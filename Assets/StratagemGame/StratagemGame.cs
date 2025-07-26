@@ -8,7 +8,7 @@ public class StratagemGame : MonoBehaviour {
 
     string lastCode = "";
 
-    public string[] defaultCodes = new string[] { 
+    private string[] defaultCodes = new string[] { 
         "wdsss",
         "wsdaw",
         "sswd",
