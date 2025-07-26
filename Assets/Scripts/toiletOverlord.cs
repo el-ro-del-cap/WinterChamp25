@@ -33,7 +33,7 @@ public class toiletOverlord : MonoBehaviour
         a_pop.volume = 0.60f;
         gameLord.uncloggedCount++;
         a_pop.Play();
-        if (gameLord.uncloggedCount == gameLord.uncloggedGoal)
+        if (gameLord.uncloggedCount >= gameLord.uncloggedGoal)
             gameLord.winCondition();
     }
     public void enableWall()

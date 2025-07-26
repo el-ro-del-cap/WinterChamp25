@@ -73,10 +73,11 @@ public class MiniGameManager : MonoBehaviour{
                 if (overlord != null)
                 {
                     overlord.winImg.SetActive(false); // Hide win image at start
-                    overlord.OnWin += () => {
+                    overlord.OnWin = () => {
+						Debug.Log("--- Toilet Won! ---");
                         if (inputController != null)
-                            inputController.SetMovementEnabled(true);
-                        CameraManager.Instance.SwitchBack();
+							inputController.SetMovementEnabled(true);
+                        CameraManager.Instance.SwitchTo("TopDownCamera");
                     };
                 }
                 break;

@@ -28,31 +28,39 @@ public class MinigameOverlord : MonoBehaviour
         MinigameInit();
     }
 
-    public void MinigameInit()
-    {
+    public void MinigameInit()  {
+		uncloggedCount = 0;
+		uncloggedGoal = 0;
+        var oldToilets = GetComponentsInChildren<toiletOverlord>(true);
+        foreach (var toilet in oldToilets)
+        {
+            if (toilet != null && toilet.gameObject != null)
+                Destroy(toilet.gameObject);
+        }
+  
         switch (skillStatic.Skill)
         {
             case 0:
                 foreach (Vector3 pos in positionsEasy)
                 {
-                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation, this.transform);
+                    GameObject.Instantiate(toiletPrefab, transform.position + pos, transform.rotation, this.transform);
                 }
                 break;
             case 1:
                 foreach (Vector3 pos in positionsNormal)
                 {
-                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation, this.transform);
+                    GameObject.Instantiate(toiletPrefab, transform.position + pos, transform.rotation, this.transform);
                 }
                 break;
             case 2:
                 foreach (Vector3 pos in positionsHard)
                 {
-                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation, this.transform);
+                    GameObject.Instantiate(toiletPrefab, transform.position + pos, transform.rotation, this.transform);
                 }
                 break;
         }
-        toiletCount = FindObjectsByType<toiletOverlord>(FindObjectsSortMode.None);
-        uncloggedGoal = toiletCount.Length;
+toiletCount = GetComponentsInChildren<toiletOverlord>(true);
+uncloggedGoal = toiletCount.Length - oldToilets.Length; // Atar con alambre
         //playerPlunge = FindFirstObjectByType<MouseMovement>();
         //plungeGoal = (Random.Range(4, 8));   
     }
@@ -62,12 +70,6 @@ public class MinigameOverlord : MonoBehaviour
     {
         winImg.SetActive(true);
         if (OnWin != null) OnWin.Invoke();
-    }
-
-    private System.Collections.IEnumerator WaitAndLoadScene()
-    {
-        yield return new WaitForSeconds(1f);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TopDownExampleScene");
     }
     public void SetSkill(int skillet)
     {

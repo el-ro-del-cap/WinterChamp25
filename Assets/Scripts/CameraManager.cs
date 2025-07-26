@@ -27,19 +27,6 @@ public class CameraManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        // Disable all cameras except the first one
-        for (int i = 0; i < cameras.Count; i++)
-        {
-            if (i == 0)
-            {
-                cameras[i].camera.enabled = true;
-                currentCamera = cameras[i].camera;
-            }
-            else
-            {
-                cameras[i].camera.enabled = false;
-            }
-        }
     }
 
     public void SwitchTo(string cameraName)
