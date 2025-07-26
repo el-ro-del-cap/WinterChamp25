@@ -91,3 +91,4 @@ MonoBehaviour:
   arrowImage: {fileID: 7592241174320515517}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   pressedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  wrongColor: {r: 0.8490566, g: 0.09211465, b: 0.09211465, a: 1}

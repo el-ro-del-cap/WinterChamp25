@@ -37,31 +37,40 @@ public class StratagemGame : MonoBehaviour {
         "dwasdaw",
         "a",
         "sdaswdawdaswadswads",
+        "wassdddwwwww",
         //Codigos de la pipol:
         "wadswasdw",
         "wdaswddsswadsws",
         "sssssssw",
         "wdsdadadws",
         "wwssadad",
-        "ssssdwas",
-        "wassdddwwwww"
+        "ssssdwas"
     };
 
-    public int victoryCount;
 
-    public StratagemArrow UPArrowPrefab;
-    public StratagemArrow LEFTArrowPrefab;
-    public StratagemArrow DOWNArrowPrefab;
-    public StratagemArrow RIGHTArrowPrefab;
+    public StratagemArrow defaultUPArrowPrefab;
+    public StratagemArrow defaultLEFTArrowPrefab;
+    public StratagemArrow defaultDOWNArrowPrefab;
+    public StratagemArrow defaultRIGHTArrowPrefab;
 
     public Transform layoutForArrows;
+
+    public AudioClip sndCorrectPress;
+    public AudioClip sndWrongPress;
+    public AudioClip sndVictory;
+
+    public AudioSource sourceForAudio;
+
+    public float disableArrowsOnErrorSeconds = 1f;
 
     public KeyCode[] upArrowAliases = new KeyCode[] {KeyCode.W, KeyCode.UpArrow};
     public KeyCode[] leftArrowAliases = new KeyCode[] { KeyCode.A, KeyCode.LeftArrow };
     public KeyCode[] downArrowAliases = new KeyCode[] { KeyCode.S, KeyCode.DownArrow };
     public KeyCode[] rightArrowAliases = new KeyCode[] { KeyCode.D, KeyCode.RightArrow };
 
+    public int victoryCount;
     public bool playing;
+    public bool inputEnabled = true;
 
     /// <summary>
     /// Settear en false luego de usarlo
@@ -80,7 +89,7 @@ public class StratagemGame : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (playing) {
+        if (playing && inputEnabled) {
             if (newArrows.Count == 0) {
                 GameVictory();
             }
@@ -135,24 +144,40 @@ public class StratagemGame : MonoBehaviour {
             newArrows[0].arrowScript.PressArrow();
             usedArrows.Add(newArrows[0]);
             newArrows.RemoveAt(0);
+            if (newArrows.Count > 0) {
+                sourceForAudio.PlayOneShot(sndCorrectPress);
+            }
         } else {
-            RestoreArrows();
+            WrongInput();
         }
     }
 
     public void GameVictory() {
+        sourceForAudio.PlayOneShot(sndVictory);
         StopGame();
         gameVictory = true;
 
     }
 
-    public void RestoreArrows() {
+    public void WrongInput() {
+        sourceForAudio.PlayOneShot(sndWrongPress);
+        RestoreArrows(true, disableArrowsOnErrorSeconds);
+        DisableInputsForTime(disableArrowsOnErrorSeconds);
+    }
+
+    public void RestoreArrows(bool doWrongAnimation = false, float wrongAnimationDuration = 1f) {
         List<StratArrowContainer> auxList = usedArrows;
         for (int i = 0; i < newArrows.Count; i++) {
             auxList.Add(newArrows[i]);
         }
-        foreach (StratArrowContainer arrow in auxList) {
-            arrow.arrowScript.UnPressArrow();
+        if (doWrongAnimation) {
+            foreach (StratArrowContainer arrow in auxList) {
+                arrow.arrowScript.DoWrongColorAnimation(wrongAnimationDuration);
+            }
+        } else {
+            foreach (StratArrowContainer arrow in auxList) {
+                arrow.arrowScript.UnPressArrow();
+            }
         }
         newArrows = auxList;
         usedArrows = new List<StratArrowContainer>();
@@ -164,23 +189,23 @@ public class StratagemGame : MonoBehaviour {
     /// </summary>
     /// <param name="arrowCode"></param>
     /// <returns></returns>
-    public void StartArrowGame(string arrowCode) {
+    public void StartArrowGame(string arrowCode, StratagemArrow prefabUP = null, StratagemArrow prefabLEFT = null, StratagemArrow prefabDOWN = null, StratagemArrow prefabRIGHT = null) {
         ClearArrows();
         newArrows = new List<StratArrowContainer>();
         usedArrows = new List<StratArrowContainer>();
         for (int i = 0; i < arrowCode.Length; i++) {
             switch (arrowCode[i]) {
                 case 'w':
-                    InstantiateArrow(UPArrowPrefab, ArrowDirection.up);
+                    InstantiateArrow(prefabUP != null ? prefabUP : defaultUPArrowPrefab, ArrowDirection.up);;
                     break;
                 case 'a':
-                    InstantiateArrow(LEFTArrowPrefab, ArrowDirection.left);
+                    InstantiateArrow(prefabLEFT != null ? prefabLEFT : defaultLEFTArrowPrefab, ArrowDirection.left);
                     break;
                 case 's':
-                    InstantiateArrow(DOWNArrowPrefab, ArrowDirection.down);
+                    InstantiateArrow(prefabDOWN != null ? prefabDOWN : defaultDOWNArrowPrefab, ArrowDirection.down);
                     break;
                 case 'd':
-                    InstantiateArrow(RIGHTArrowPrefab, ArrowDirection.right);
+                    InstantiateArrow(prefabRIGHT != null ? prefabRIGHT : defaultRIGHTArrowPrefab, ArrowDirection.right);
                     break;
                 default:
                     break;
@@ -214,27 +239,35 @@ public class StratagemGame : MonoBehaviour {
     }
 
     public void LoadRandomCode() {
+        LoadRandomCode(null, null, null, null);
+    }
+
+    public void LoadRandomCode(StratagemArrow prefabUP, StratagemArrow prefabLEFT, StratagemArrow prefabDOWN, StratagemArrow prefabRIGHT) {
         RandomDefaultStart:
         string code = defaultCodes[Random.Range(0, defaultCodes.Length)];
         if (code == lastCode) {
             goto RandomDefaultStart;
         }
         lastCode = code;
-        StartArrowGame(code);
+        StartArrowGame(code, prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT);
     }
 
     private Coroutine frenzyCR;
 
     public void StartCodeFrenzy() {
-        LoadRandomCode();
-        frenzyCR = StartCoroutine(CodeFrenzyCR());
+        StartCodeFrenzy(null, null, null, null);
     }
 
-    public IEnumerator CodeFrenzyCR() {
+    public void StartCodeFrenzy(StratagemArrow prefabUP, StratagemArrow prefabLEFT, StratagemArrow prefabDOWN, StratagemArrow prefabRIGHT) {
+        LoadRandomCode(prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT);
+        frenzyCR = StartCoroutine(CodeFrenzyCR(prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT));
+    }
+
+    public IEnumerator CodeFrenzyCR(StratagemArrow prefabUP = null, StratagemArrow prefabLEFT = null, StratagemArrow prefabDOWN = null, StratagemArrow prefabRIGHT = null) {
         while (true) {
             if (gameVictory) {
                 gameVictory = false;
-                LoadRandomCode();
+                LoadRandomCode(prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT);
             }
             yield return null;
         }
@@ -247,6 +280,15 @@ public class StratagemGame : MonoBehaviour {
         StopGame();
     }
 
+    private void DisableInputsForTime(float durationSeconds) {
+        StartCoroutine(DisableInputCR(durationSeconds));
+    }
+
+    private IEnumerator DisableInputCR(float durationSeconds) {
+        inputEnabled = false;
+        yield return new WaitForSeconds(durationSeconds);
+        inputEnabled = true;
+    }
 
 }
 

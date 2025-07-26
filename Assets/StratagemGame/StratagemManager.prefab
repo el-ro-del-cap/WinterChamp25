@@ -44,15 +44,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3429b5f1402dac4eb5652bb2995b43d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testCode: wdsss
-  UPArrowPrefab: {fileID: 0}
-  LEFTArrowPrefab: {fileID: 0}
-  DOWNArrowPrefab: {fileID: 0}
-  RIGHTArrowPrefab: {fileID: 0}
+  defaultCodes:
+  - wdsss
+  - wsdaw
+  - sswd
+  - swaswdsw
+  - dwws
+  - asdawd
+  - dsawas
+  - sss
+  - wswsws
+  - adadad
+  - dddaaa
+  - wdsd
+  - sadda
+  - ddsd
+  - dsaww
+  - dswwass
+  - sdddwasdaw
+  - wdsaw
+  - adsas
+  - wwddssaa
+  - dwasdwas
+  - wasd
+  - wwwwwwwwws
+  - asdwdsdw
+  - asdsdsw
+  - asdwasw
+  - dwasdaw
+  - a
+  - sdaswdawdaswadswads
+  - wassdddwwwww
+  - wadswasdw
+  - wdaswddsswadsws
+  - sssssssw
+  - wdsdadadws
+  - wwssadad
+  - ssssdwas
+  defaultUPArrowPrefab: {fileID: 6342243523507247784, guid: c8e23202d8672944d9dae41f3f3b695c, type: 3}
+  defaultLEFTArrowPrefab: {fileID: 3482598620927060530, guid: d7b40769ed6a482408d0945164e1bb2c, type: 3}
+  defaultDOWNArrowPrefab: {fileID: 8997091143293948458, guid: 6aeee55a06f2a9d479e52a08469872a3, type: 3}
+  defaultRIGHTArrowPrefab: {fileID: 4612642674748994287, guid: fbed1aaddcaaf8142a4cc64e12d7dfaf, type: 3}
   layoutForArrows: {fileID: 0}
+  sndCorrectPress: {fileID: 8300000, guid: 500da781ba1a476428070f6c66def673, type: 3}
+  sndWrongPress: {fileID: 8300000, guid: 8a4ff1fc8c2542243af3a900a912fcd0, type: 3}
+  sndVictory: {fileID: 8300000, guid: caaf3e23d501cd84086928489d4e8960, type: 3}
+  sourceForAudio: {fileID: 0}
+  disableArrowsOnErrorSeconds: 1
   upArrowAliases: 7700000011010000
   leftArrowAliases: 6100000014010000
   downArrowAliases: 7300000012010000
   rightArrowAliases: 6400000013010000
+  victoryCount: 0
   playing: 0
+  inputEnabled: 1
   gameVictory: 0
