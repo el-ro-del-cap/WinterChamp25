@@ -716,7 +716,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3997854604245098241}
         m_TargetAssemblyTypeName: StratagemGame, Assembly-CSharp
-        m_MethodName: StartCodeFrenzy
+        m_MethodName: StartEndlessCodes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

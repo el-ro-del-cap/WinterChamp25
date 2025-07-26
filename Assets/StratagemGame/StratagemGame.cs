@@ -8,7 +8,7 @@ public class StratagemGame : MonoBehaviour {
 
     string lastCode = "";
 
-    public string[] defaultCodes = new string[] { 
+    private string[] defaultCodes = new string[] { 
         "wdsss",
         "wsdaw",
         "sswd",
@@ -36,11 +36,11 @@ public class StratagemGame : MonoBehaviour {
         "asdsdsw",
         "asdwasw",
         "dwasdaw",
-        "sdaswdawdaswadswads",
-        "wassdddwwwww",
+        "sdaswdawdas",
+        "wassdddwwww",
         //Codigos de la pipol:
         "wadswasdw",
-        "wdaswddsswadsws",
+        "wdaswddsswa",
         "sssssssw",
         "wdsdadadws",
         "wwssadad",

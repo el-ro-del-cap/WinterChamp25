@@ -105,8 +105,7 @@ public class MouseMovement : MonoBehaviour
         }
         else
         {
-            overlord.plunges++;
-            Debug.Log("Score");
+            overlord.plungePlus();
         }
     }
       

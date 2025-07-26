@@ -529,6 +529,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaf0e51e14b03244a0b95484bc73ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a_clip_succ:
+  - {fileID: 8300000, guid: a24f5505bb5e58b44bdc56e04c629047, type: 3}
+  - {fileID: 8300000, guid: c90d9b654156f1648bc798c776fd512b, type: 3}
+  - {fileID: 8300000, guid: aada34895afd0de4b9d1875640a97e41, type: 3}
+  - {fileID: 8300000, guid: 70dd9e2e5d2946f49a41c5e94e36a21b, type: 3}
+  - {fileID: 8300000, guid: acb7563c272398149a8e4913e5876c9f, type: 3}
+  - {fileID: 8300000, guid: 8569883625ec2a148be45404bbb22877, type: 3}
+  - {fileID: 8300000, guid: bd5b5dc7b5c70bc45be9f224be28c559, type: 3}
+  a_clip_pop:
+  - {fileID: 8300000, guid: 23611ab5c67cf4c4b91f244c4d690e3f, type: 3}
+  - {fileID: 8300000, guid: 176988fd69ba9bb48b12c87c6704efda, type: 3}
+  - {fileID: 8300000, guid: a9837d1c06363fd41b060d5cbb8570d1, type: 3}
   plunges: 0
   plungeGoal: 5
   invisibleWall: {fileID: 700335799301252108}
