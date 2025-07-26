@@ -53,7 +53,8 @@ public class MiniGameManager : MonoBehaviour
                 break;
             case "Toilet":
                 Debug.Log("--- Opening Toilet Game! ---");
-                // Activate shop UI, populate items, etc.
+                skillStatic.Skill = 1;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Skibidi");
                 break;
             default:
                 Debug.LogWarning($"Mini-game ID '{miniGameID}' not recognized.");

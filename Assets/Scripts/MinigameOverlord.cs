@@ -60,10 +60,16 @@ public class MinigameOverlord : MonoBehaviour
     public void winCondition()
     {
         winImg.SetActive(true);
+        StartCoroutine(WaitAndLoadScene());
+    }
+
+    private System.Collections.IEnumerator WaitAndLoadScene()
+    {
+        yield return new WaitForSeconds(1f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TopDownExampleScene");
     }
     public void SetSkill(int skillet)
     {
         skillStatic.Skill = skillet;
-        SceneManager.LoadScene("Skibidi");
     }
 }
