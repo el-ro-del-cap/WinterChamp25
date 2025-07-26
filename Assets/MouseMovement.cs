@@ -48,6 +48,7 @@ public class MouseMovement : MonoBehaviour
         {
             transform.position = new Vector3(-4.65f, mousePos.y) + new Vector3(0, mouseOffset.y);
         }
+    }
 
         //private void OnCollisionEnter2D(Collision2D collision)
         //{
@@ -56,19 +57,19 @@ public class MouseMovement : MonoBehaviour
 
         // Update is called once per frame
         void Update()
-    {
+            {
         //This one handles the plunger not leaving the toilet boundaries
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (isAnchored == true && transform.position.y < anchorOffset)
-        {
+                {
             transform.position = new Vector3(anchorPos.position.x, (anchorPos.position.y - anchorOffset));
-        }
+                }
         else if (isAnchored == true && transform.position.y > wallOffset)
-        {
+                {
             transform.position = new Vector3(anchorPos.position.x, (wallPos.position.y - wallOffset));
-        }
+                }
 
-    }
+            }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //when the plunger enters the anchor collider it enables the invisible ceiling and enters the anchored state
