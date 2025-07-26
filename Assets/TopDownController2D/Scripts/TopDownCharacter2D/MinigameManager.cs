@@ -1,8 +1,11 @@
 // MiniGameManager.cs
 using UnityEngine;
 
-public class MiniGameManager : MonoBehaviour
-{
+public class MiniGameManager : MonoBehaviour{
+    [Header("Minigame Prefabs")]
+    public GameObject skibidiMinigamePrefab;
+    private GameObject activeMinigameInstance;
+
     public static MiniGameManager Instance { get; private set; } // Singleton pattern
 
     void Awake()
@@ -22,27 +25,26 @@ public class MiniGameManager : MonoBehaviour
     {
         Debug.Log($"MiniGameManager: Attempting to start mini-game with ID: {miniGameID}");
 
+        var playerObj = GameObject.FindGameObjectWithTag("Player");
+        TopDownCharacter2D.Controllers.TopDownInputController inputController = null;
+        if (playerObj != null)
+        {
+            inputController = playerObj.GetComponent<TopDownCharacter2D.Controllers.TopDownInputController>();
+        }
+
         switch (miniGameID)
         {
             case "Arrows":
                 Debug.Log("--- Starting Arrows Game ! ---");
-                // Activate the Stratagem game (ensure the GameObject is in the scene and initially inactive)
                 var stratagemGameObj = GameObject.Find("StratagemManager");
                 if (stratagemGameObj != null)
                 {
                     var stratagemGame = stratagemGameObj.GetComponent<StratagemGame>();
-                    // Disable player movement
-                    var playerObj = GameObject.FindGameObjectWithTag("Player");
-                    if (playerObj != null)
+                    if (inputController != null)
                     {
-                        var inputController = playerObj.GetComponent<TopDownCharacter2D.Controllers.TopDownInputController>();
-                        if (inputController != null)
-                        {
-                            inputController.SetMovementEnabled(false);
-                            // Subscribe to re-enable movement when the game is won
-                            stratagemGame.OnGameVictory.RemoveAllListeners();
-                            stratagemGame.OnGameVictory.AddListener(() => inputController.SetMovementEnabled(true));
-                        }
+                        inputController.SetMovementEnabled(false);
+                        stratagemGame.OnGameVictory.RemoveAllListeners();
+                        stratagemGame.OnGameVictory.AddListener(() => inputController.SetMovementEnabled(true));
                     }
                     stratagemGame.DoArrowsGame(3);
                 }
@@ -54,7 +56,29 @@ public class MiniGameManager : MonoBehaviour
             case "Toilet":
                 Debug.Log("--- Opening Toilet Game! ---");
                 skillStatic.Skill = 1;
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Skibidi");
+                // Reinitialize the minigame before switching cameras
+                var overlord = FindObjectOfType<MinigameOverlord>();
+                if (overlord != null)
+                {
+                    overlord.MinigameInit();
+                }
+                // Switch to the toilet minigame camera using CameraManager
+                CameraManager.Instance.SwitchTo("ToiletMinigameCamera");
+                // Block player input
+                if (inputController != null)
+                {
+                    inputController.SetMovementEnabled(false);
+                }
+                // Listen for minigame end (assume MinigameOverlord is in the scene)
+                if (overlord != null)
+                {
+                    overlord.winImg.SetActive(false); // Hide win image at start
+                    overlord.OnWin += () => {
+                        if (inputController != null)
+                            inputController.SetMovementEnabled(true);
+                        CameraManager.Instance.SwitchBack();
+                    };
+                }
                 break;
             default:
                 Debug.LogWarning($"Mini-game ID '{miniGameID}' not recognized.");

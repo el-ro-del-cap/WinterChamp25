@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MinigameOverlord : MonoBehaviour
 {
+    public System.Action OnWin;
     
     //public MouseMovement playerPlunge;
     //public int plunges;
@@ -27,26 +28,26 @@ public class MinigameOverlord : MonoBehaviour
         MinigameInit();
     }
 
-    void MinigameInit()
+    public void MinigameInit()
     {
         switch (skillStatic.Skill)
         {
             case 0:
                 foreach (Vector3 pos in positionsEasy)
                 {
-                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation);
+                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation, this.transform);
                 }
                 break;
             case 1:
                 foreach (Vector3 pos in positionsNormal)
                 {
-                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation);
+                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation, this.transform);
                 }
                 break;
             case 2:
                 foreach (Vector3 pos in positionsHard)
                 {
-                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation);
+                    GameObject.Instantiate(toiletPrefab, pos, transform.rotation, this.transform);
                 }
                 break;
         }
@@ -60,7 +61,7 @@ public class MinigameOverlord : MonoBehaviour
     public void winCondition()
     {
         winImg.SetActive(true);
-        StartCoroutine(WaitAndLoadScene());
+        if (OnWin != null) OnWin.Invoke();
     }
 
     private System.Collections.IEnumerator WaitAndLoadScene()
