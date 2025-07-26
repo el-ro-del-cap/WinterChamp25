@@ -65,7 +65,7 @@ public class TankController : MonoBehaviour
         float fillPercentage = currentFillAmount / tankCapacity;
 
         // Ajustar la escala en el eje Y
-        float newScaleY = Mathf.Clamp(fillPercentage, 0, 1);
+        float newScaleY = Mathf.Clamp(fillPercentage, 0, 2);
         fillBarRectTransform.localScale = new Vector3(fillBarRectTransform.localScale.x, newScaleY, fillBarRectTransform.localScale.z);
 
         // Actualizar el texto del porcentaje
