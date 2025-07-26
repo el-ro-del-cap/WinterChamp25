@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Indicators
   - Water
   - UI
   - 
@@ -42,6 +42,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Indicators
+    uniqueID: 1788288607
     locked: 0
   m_RenderingLayers:
   - Default
