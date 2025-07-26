@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 public class StratagemGame : MonoBehaviour {
+    public UnityEngine.Events.UnityEvent OnGameVictory = new UnityEngine.Events.UnityEvent();
 
     string lastCode = "";
 
@@ -185,7 +186,7 @@ public class StratagemGame : MonoBehaviour {
 
 
     /// <summary>
-    /// Comienza juego de flechas estilo estratagemas de Helldivers con el codigo deseado. El codigo está compuesto de las flechas arriba, izquierda, abajo, derecha, representadas por caracteres "wasd"
+    /// Comienza juego de flechas estilo estratagemas de Helldivers con el codigo deseado. El codigo estï¿½ compuesto de las flechas arriba, izquierda, abajo, derecha, representadas por caracteres "wasd"
     /// </summary>
     /// <param name="arrowCode"></param>
     /// <returns></returns>
@@ -281,6 +282,7 @@ public class StratagemGame : MonoBehaviour {
                 if (victoryCount >= victoriesNeeded) {
                     victoryCount = 0;
                     gameVictory = true;
+					OnGameVictory.Invoke();
                     break;
                 }
                 minorVictory = false;
