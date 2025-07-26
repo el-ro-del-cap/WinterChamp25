@@ -35,7 +35,6 @@ public class StratagemGame : MonoBehaviour {
         "asdsdsw",
         "asdwasw",
         "dwasdaw",
-        "a",
         "sdaswdawdaswadswads",
         "wassdddwwwww",
         //Codigos de la pipol:
@@ -69,13 +68,14 @@ public class StratagemGame : MonoBehaviour {
     public KeyCode[] rightArrowAliases = new KeyCode[] { KeyCode.D, KeyCode.RightArrow };
 
     public int victoryCount;
-    public bool playing;
-    public bool inputEnabled = true;
+    private bool playing;
+    private bool inputEnabled = true;
 
     /// <summary>
     /// Settear en false luego de usarlo
     /// </summary>
     public bool gameVictory = false;
+    public bool minorVictory = false;
 
     List<StratArrowContainer> newArrows;
     List<StratArrowContainer> usedArrows;
@@ -155,7 +155,7 @@ public class StratagemGame : MonoBehaviour {
     public void GameVictory() {
         sourceForAudio.PlayOneShot(sndVictory);
         StopGame();
-        gameVictory = true;
+        minorVictory = true;
 
     }
 
@@ -238,11 +238,11 @@ public class StratagemGame : MonoBehaviour {
         playing = false;
     }
 
-    public void LoadRandomCode() {
+    private void LoadRandomCode() {
         LoadRandomCode(null, null, null, null);
     }
 
-    public void LoadRandomCode(StratagemArrow prefabUP, StratagemArrow prefabLEFT, StratagemArrow prefabDOWN, StratagemArrow prefabRIGHT) {
+    private void LoadRandomCode(StratagemArrow prefabUP, StratagemArrow prefabLEFT, StratagemArrow prefabDOWN, StratagemArrow prefabRIGHT) {
         RandomDefaultStart:
         string code = defaultCodes[Random.Range(0, defaultCodes.Length)];
         if (code == lastCode) {
@@ -252,26 +252,45 @@ public class StratagemGame : MonoBehaviour {
         StartArrowGame(code, prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT);
     }
 
+    public void DoArrowsGame(int victoriesNeeded = 1) {
+        DoArrowsGame(victoriesNeeded, null, null, null, null);
+    }
+
+    public void DoArrowsGame(int victoriesNeeded, StratagemArrow prefabUP, StratagemArrow prefabLEFT, StratagemArrow prefabDOWN, StratagemArrow prefabRIGHT) {
+        StartCodeFrenzy(victoriesNeeded, prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT);
+    }
+
+
+
     private Coroutine frenzyCR;
 
-    public void StartCodeFrenzy() {
-        StartCodeFrenzy(null, null, null, null);
+    public void StartEndlessCodes() {
+        StartCodeFrenzy(9000, null, null, null, null);
     }
 
-    public void StartCodeFrenzy(StratagemArrow prefabUP, StratagemArrow prefabLEFT, StratagemArrow prefabDOWN, StratagemArrow prefabRIGHT) {
+    public void StartCodeFrenzy(int victoriesNeeded, StratagemArrow prefabUP, StratagemArrow prefabLEFT, StratagemArrow prefabDOWN, StratagemArrow prefabRIGHT) {
         LoadRandomCode(prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT);
-        frenzyCR = StartCoroutine(CodeFrenzyCR(prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT));
+        frenzyCR = StartCoroutine(CodeFrenzyCR(victoriesNeeded, prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT));
     }
 
-    public IEnumerator CodeFrenzyCR(StratagemArrow prefabUP = null, StratagemArrow prefabLEFT = null, StratagemArrow prefabDOWN = null, StratagemArrow prefabRIGHT = null) {
+    public IEnumerator CodeFrenzyCR(int victoriesNeeded, StratagemArrow prefabUP = null, StratagemArrow prefabLEFT = null, StratagemArrow prefabDOWN = null, StratagemArrow prefabRIGHT = null) {
+        victoryCount = 0;
         while (true) {
-            if (gameVictory) {
-                gameVictory = false;
+            if (minorVictory) {
+                victoryCount++;
+                if (victoryCount >= victoriesNeeded) {
+                    victoryCount = 0;
+                    gameVictory = true;
+                    break;
+                }
+                minorVictory = false;
                 LoadRandomCode(prefabUP, prefabLEFT, prefabDOWN, prefabRIGHT);
             }
             yield return null;
         }
     }
+
+
 
     public void StopFrenzy() {
         if (frenzyCR != null) {

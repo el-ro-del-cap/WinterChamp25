@@ -7,7 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class MouseMovement : MonoBehaviour
 {
-    public MinigameOverlord overlord;
+    public toiletOverlord overlord;
     public float speed = 10f;
     private Vector3 mousePos;
     private Vector3 mouseOffset;
@@ -17,14 +17,16 @@ public class MouseMovement : MonoBehaviour
     public float anchorOffset;
     public Transform wallPos;
     public float wallOffset;
+    private float initPosX;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        initPosX = transform.position.x;
         isAnchored = false;
         isMoving = false;
-        overlord = FindFirstObjectByType<MinigameOverlord>();
+        overlord = GetComponentInParent<toiletOverlord>();
     }
 
     private void OnMouseDown()
@@ -46,7 +48,7 @@ public class MouseMovement : MonoBehaviour
         //This handles movement only on the Y axis for the object.
         if (isMoving)
         {
-            transform.position = new Vector3(-4.65f, mousePos.y) + new Vector3(0, mouseOffset.y);
+            transform.position = new Vector3(initPosX, mousePos.y) + new Vector3(0, mouseOffset.y);
         }
     }
 
@@ -66,7 +68,7 @@ public class MouseMovement : MonoBehaviour
                 }
         else if (isAnchored == true && transform.position.y > wallOffset)
                 {
-            transform.position = new Vector3(anchorPos.position.x, (wallPos.position.y - wallOffset));
+            transform.position = new Vector3(anchorPos.position.x, (wallPos.position.y + wallOffset));
                 }
 
             }
@@ -74,26 +76,38 @@ public class MouseMovement : MonoBehaviour
     {
         //when the plunger enters the anchor collider it enables the invisible ceiling and enters the anchored state
         //could also do it with SWITCH but what the hell it's just two tags
-         if (collision.tag == "Anchor"){
+        if (collision.tag == "Anchor")
+        {
             //isMoving = false;
             isAnchored = true;
             overlord.enableWall();
         }
-        else if (collision.tag == "Wall" && overlord.plunges >= overlord.plungeGoal)
-            {
-            Debug.Log("Win");
-            isMoving = false;
-            GetComponent<BoxCollider2D>().enabled = false;
-            overlord.winCondition();
-        }
+        //else if (collision.tag == "Wall")
+        //    {
+        //    Debug.Log("Win");
+        //    isMoving = false;
+        //    GetComponent<BoxCollider2D>().enabled = false;
+        //    overlord.updateCount();
+        //    overlord.winCondition();
+        //}
 
-        
+
 
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Anchor")
+        if (collision.tag == "Anchor" && overlord.plunges == overlord.plungeGoal)
+        {
+            Debug.Log("Win");
+            isMoving = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+            overlord.updateCount();
+        }
+        else
+        {
             overlord.plunges++;
             Debug.Log("Score");
+        }
     }
+      
 }
