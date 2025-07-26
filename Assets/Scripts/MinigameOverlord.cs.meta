@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8dc97f13289f334488485ce720dde3bd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - toiletPrefab: {fileID: 4798233071913737904, guid: b74fe7ba7ae653c4687aa0f30f5bfb4f, type: 3}
+  - InvisibleWall: {instanceID: 0}
+  - winImg: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
