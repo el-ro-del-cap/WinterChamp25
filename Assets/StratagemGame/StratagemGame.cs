@@ -36,7 +36,15 @@ public class StratagemGame : MonoBehaviour {
         "asdwasw",
         "dwasdaw",
         "a",
-        "sdaswdawdaswadswads"
+        "sdaswdawdaswadswads",
+        //Codigos de la pipol:
+        "wadswasdw",
+        "wdaswddsswadsws",
+        "sssssssw",
+        "wdsdadadws",
+        "wwssadad",
+        "ssssdwas",
+        "wassdddwwwww"
     };
 
     public int victoryCount;
