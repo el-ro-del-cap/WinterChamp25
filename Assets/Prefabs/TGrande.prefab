@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1271353905936662069}
   - component: {fileID: -9195279690965774125}
   m_Layer: 5
-  m_Name: TMedio
+  m_Name: TGrande
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   fillBarRectTransform: {fileID: 6184864194502871812}
   timerText: {fileID: 1780973257895787167}
   percentageText: {fileID: 5785385846037110573}
-  tankCapacity: 40
+  tankCapacity: 20
   timeLimit: 10
   minWinPercentage: 90
   maxWinPercentage: 110
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09416164, g: 0.8679245, b: 0.19200142, a: 1}
+  m_Color: {r: 0.3932279, g: 0.09411764, b: 0.8666667, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
