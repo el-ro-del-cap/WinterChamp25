@@ -1,10 +1,12 @@
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine.Audio;
+using UnityEngine.ParticleSystemJobs;
 using UnityEngine;
 
 public class toiletOverlord : MonoBehaviour
 {
+    public ParticleSystem[] part;
     private AudioSource a_pop;
     public AudioClip[] a_clip_succ;
     public AudioClip[] a_clip_pop;
@@ -33,6 +35,7 @@ public class toiletOverlord : MonoBehaviour
         a_pop.volume = 0.60f;
         gameLord.uncloggedCount++;
         a_pop.Play();
+		part[1].Play();
         if (gameLord.uncloggedCount >= gameLord.uncloggedGoal)
             gameLord.winCondition();
     }
@@ -48,5 +51,6 @@ public class toiletOverlord : MonoBehaviour
         plunges++;
         Debug.Log("Score");
         a_pop.Play();
+        part[0].Play();
     }
 }
