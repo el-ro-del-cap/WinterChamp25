@@ -49,15 +49,13 @@ public class MouseMovement : MonoBehaviour
             transform.position = new Vector3(-4.65f, mousePos.y) + new Vector3(0, mouseOffset.y);
         }
 
-    }
+        //private void OnCollisionEnter2D(Collision2D collision)
+        //{
+        //    #isMoving = false;
+        //}
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    #isMoving = false;
-    //}
-
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
         //This one handles the plunger not leaving the toilet boundaries
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
