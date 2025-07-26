@@ -27,7 +27,7 @@ public class MouseMovement : MonoBehaviour
         isMoving = false;
         if (isAnchored == true)
         {
-            transform.position = anchorPos.position - new Vector3(anchorPos.position.x, (anchorPos.position.y -);
+            transform.position = anchorPos.position - new Vector3(anchorPos.position.x, anchorPos.position.y);
 
         }
     }
