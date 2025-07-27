@@ -29,8 +29,8 @@ public class MinigameOverlord : MonoBehaviour
     }
 
     public void MinigameInit()  {
-		uncloggedCount = 0;
-		uncloggedGoal = 0;
+        uncloggedCount = 0;
+        uncloggedGoal = 0;
         var oldToilets = GetComponentsInChildren<toiletOverlord>(true);
         foreach (var toilet in oldToilets)
         {
@@ -69,6 +69,13 @@ uncloggedGoal = toiletCount.Length - oldToilets.Length; // Atar con alambre
     public void winCondition()
     {
         winImg.SetActive(true);
+        StartCoroutine(WinDelayCoroutine());
+    }
+
+    private System.Collections.IEnumerator WinDelayCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+		winImg.SetActive(false);
         if (OnWin != null) OnWin.Invoke();
     }
     public void SetSkill(int skillet)

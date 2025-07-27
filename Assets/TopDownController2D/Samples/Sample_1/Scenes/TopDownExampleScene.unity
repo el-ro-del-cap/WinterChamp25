@@ -7503,6 +7503,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.34
       objectReference: {fileID: 0}
+    - target: {fileID: 6474382169062534414, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
+      propertyPath: canBePickupBy.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6474382169062534513, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_Name
       value: Coin
@@ -7569,73 +7573,9 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 961089725508898571, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_RenderMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835276349138357614, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_TagString
-      value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976144219905139282, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4256964413353633635, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
       propertyPath: m_Name
       value: SkibidiGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 799.99994
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 449.99997
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.4961487
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 860
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339256432224761272, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 531.9553
       objectReference: {fileID: 0}
     - target: {fileID: 4405637900435503267, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
       propertyPath: m_Enabled
@@ -7681,8 +7621,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3541828332188288245, guid: 5882249a15a80034c82ca3636b6db696, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

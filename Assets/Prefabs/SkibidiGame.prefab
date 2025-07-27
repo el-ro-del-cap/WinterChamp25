@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 731125640189960737}
   - component: {fileID: 4405637900435503267}
-  - component: {fileID: 3541828332188288245}
   - component: {fileID: 7619233598389414050}
   m_Layer: 0
   m_Name: Skibidi Camera
@@ -41,7 +40,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835276349138357614}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -85,14 +84,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3541828332188288245
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835276349138357614}
-  m_Enabled: 1
 --- !u!114 &7619233598389414050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +271,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 4405637900435503267}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

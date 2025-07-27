@@ -254,6 +254,7 @@ public class StratagemGame : MonoBehaviour {
     }
 
     public void DoArrowsGame(int victoriesNeeded = 1) {
+		minorVictory = false;
         DoArrowsGame(victoriesNeeded, null, null, null, null);
     }
 
