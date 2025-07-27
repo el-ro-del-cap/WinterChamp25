@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
             GameObject newTankObject = Instantiate(tankPrefabs[randomTankIndex], spawnParent);
 
             // Opcional: Centrar el tanque dentro del padre si es necesario
-            newTankObject.transform.localPosition = Vector3.zero;
+            //newTankObject.transform.localPosition = Vector3.zero;
 
             TankController newTankController = newTankObject.GetComponent<TankController>();
 

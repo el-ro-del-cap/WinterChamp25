@@ -20,9 +20,9 @@ public class FuelGun : MonoBehaviour
     {
         if (pistol != null)
         {
-            pistol.localRotation = Quaternion.Euler(0, 0, -50);
+            pistol.localRotation = Quaternion.Euler(0, 0, 0);
             initialRotation = pistol.localRotation;
-            maxRotation = initialRotation * Quaternion.Euler(0, 0, 90);
+            maxRotation = initialRotation * Quaternion.Euler(0, 0, 45);
         }
 
         // Configurar el AudioSource
@@ -84,5 +84,9 @@ public class FuelGun : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
+    public void OnMouseUp()
+    {
+        flowSlider.value = 0;
     }
 }
