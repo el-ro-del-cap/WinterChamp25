@@ -4,6 +4,7 @@ using UnityEngine;
 public class MiniGameManager : MonoBehaviour{
     [Header("Minigame Prefabs")]
     public GameObject skibidiMinigamePrefab;
+    public MoneyManager moneyManager;
     private GameObject activeMinigameInstance;
 
     public static MiniGameManager Instance { get; private set; } // Singleton pattern
@@ -75,6 +76,7 @@ public class MiniGameManager : MonoBehaviour{
                     overlord.winImg.SetActive(false); // Hide win image at start
                     overlord.OnWin = () => {
 						Debug.Log("--- Toilet Won! ---");
+                        moneyManager.SumarCreditos(1000);
                         if (inputController != null)
 							inputController.SetMovementEnabled(true);
                         CameraManager.Instance.SwitchTo("TopDownCamera");
