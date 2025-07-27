@@ -10,5 +10,5 @@ public class CustomerObjectScript : MonoBehaviour {
 [System.Serializable]
 public class ParteDialogo {
     public string[] lineasEntrada;
-    public string lineaFinal;
+    public string[] lineasFinales;
 }

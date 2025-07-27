@@ -59,7 +59,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerName: rata
-  dialogos: []
+  dialogos:
+  - lineasEntrada:
+    - "Che, pibe... \xBFme vas a atender o vas a seguir mirando el aire como un in\xFAtil?"
+    - "Jefe\u2026 buen d\xEDa."
+    - "Traeme un caf\xE9. Y metele un poco de roquefort."
+    - "\xBFRoquefort...?"
+    lineasFinales:
+    - "Salen como cucarachas\u2026 no hacen m\xE1s que infestar la galaxia."
+    - "Fijate que no ensucien nada, que despu\xE9s me vienen con quejas y no me tiembla
+      el pulso para rajar a medio mundo."
+  - lineasEntrada:
+    - "\xBFY este desastre qu\xE9 es? \xBFUn surtidor o una feria?"
+    - Estoy ordenando, jefe.
+    - Si tengo que venir yo a poner orden, empiezo por sacar a los que sobran.
+    - "Y sacame esa propaganda del vidrio\u2026 no quiero ni una pizca de esperanza
+      en este lugar."
+    lineasFinales: []
+  - lineasEntrada:
+    - "Tarde\u2026 como siempre."
+    - Son las 10 en punto.
+    - Para vos. Para la gente que produce, es tarde hace media hora.
+    - "Te dije que me pongas m\xFAsica que no me den ganas de romper parlantes. \xBFQu\xE9
+      es esto, cumbia de rata?"
+    - "Dame un agua con gas. Pero no cualquiera. De las caras, as\xED siento que
+      valgo algo entre tanta miseria."
+    lineasFinales: []
+  - lineasEntrada:
+    - "Siempre tan solito, \xBFno? Qu\xE9 triste debe ser atender este agujero todos
+      los d\xEDas\u2026"
+    - "Buen d\xEDa, jefe."
+    - "No me digas \"jefe\", que no te pagu\xE9 para que me adules.   Decime si ten\xE9s
+      galletitas de esas... de las caras. Y un trapo, que pis\xE9 algo afuera."
+    lineasFinales:
+    - "Vos segu\xED ac\xE1, haciendo el trabajo sucio.   Alguien tiene que estar
+      en el fondo mientras otros flotamos."
+    - "Ah, y si pasa alguien preguntando por m\xED\u2026   vos no sab\xE9s nada.
+      Como siempre."
 --- !u!1 &5728438764015056272
 GameObject:
   m_ObjectHideFlags: 0

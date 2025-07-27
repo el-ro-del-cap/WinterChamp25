@@ -134,4 +134,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerName: bodoque
-  dialogos: []
+  dialogos:
+  - lineasEntrada:
+    - "Llename el tanque. No s\xE9 hasta d\xF3nde voy a llegar\u2026 ni qui\xE9n
+      me va a seguir."
+    - "Hay otra estaci\xF3n a 23 d\xEDas en direcci\xF3n a Andr\xF3meda"
+    - "No me est\xE1s entendiendo. Yo me tengo que ir lejos. \xA1Lejos tipo \"cambiar
+      de identidad\" lejos!"
+    lineasFinales:
+    - "Nunca conf\xEDes en alguien que pide hielo para el caf\xE9."
+  - lineasEntrada:
+    - "Che pibe... \xBFten\xE9s un encendedor, una botella de alcohol y un metro
+      de cuerda? "
+    - "Eh... s\xED, un momento..."
+    lineasFinales:
+    - La evidencia no se esconde sola
+    - "\u2026pero tampoco se quema con agua bendita"
+  - lineasEntrada:
+    - "Pibe, \xBFten\xE9s algo que saque manchas\u2026 de\u2026 mermelada?"
+    - "\xBFMermelada? \xBFDe qu\xE9 tipo?"
+    - Roja. Muy roja. Como si la fruta estuviera enojada.
+    lineasFinales:
+    - "Gracias. La \xFAltima vez que manch\xE9 as\xED fue en aquel picnic en Saturno\u2026
+      nunca m\xE1s volv\xED a ver a los Gonz\xE1lez"
+  - lineasEntrada:
+    - "\xBFTenes c\xE1maras afuera, pibe?"
+    - "S\xED, claro, las que apuntan a la pista. \xBFPor?"
+    - "Apagalas. Por tu bien. Por el m\xEDo. Por el equilibrio del sistema solar."
+    - ...
+    - "Sab\xE9s, una vez fui como vos\u2026 joven, con los dos ri\xF1ones y un empleo
+      honesto. "
+    - "\xBFY qu\xE9 pas\xF3? "
+    - "Confi\xE9 en un hombre que ol\xEDa a diesel. Nunca m\xE1s vi a mi gato."
+    lineasFinales: []

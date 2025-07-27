@@ -59,7 +59,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerName: loca
-  dialogos: []
+  dialogos:
+  - lineasEntrada:
+    - "\xA1Tengo que huir, tengo que huir, tengo que irme antes de que me encuentren!"
+    - "\xBFDisculpe...? \xBFC\xF3mo puedo ayudarla?"
+    - "\xA1Dame todo el papel higi\xE9nico que tengas, r\xE1pido!"
+    - "Eh\u2026 enseguida\u2026"
+    lineasFinales:
+    - "El caos revela de qu\xE9 est\xE1s hecho."
+    - ...
+    - "Nos vemos\u2026 o no\u2026 Ojal\xE1 no."
+  - lineasEntrada:
+    - "\xA1Necesito arroz! \xA1ARROZ!"
+    - "No nos queda m\xE1s arroz."
+    - "Lo sab\xEDa\u2026 \xA1El fin de los tiempos se acerca! \xA1Dame todas las
+      semillas que tengas!"
+    - "\xBFTodas...?"
+    - "\xA1Todas, menos las de ch\xEDa, no me gusta c\xF3mo me miran!"
+    lineasFinales:
+    - "Gracias, Plant\xE1 algo, aunque no creas que va a crecer. A veces, eso basta."
+  - lineasEntrada:
+    - "\xBFTen\xE9s latas de at\xFAn? \xBFO algo que no expire antes de mi destino?"
+    - "Hay un par\u2026 de hace unos a\xF1os"
+    - Perfecto. El mercurio neutraliza el rastreador.
+    lineasFinales:
+    - "\xBFVos nunca sentiste que te siguen? No importa, yo s\xED."
+  - lineasEntrada:
+    - "Si no lo consigo hoy, tendr\xE9 que volver a comer sal con cuchara..."
+    - "Buenas\u2026"
+    - "Necesito f\xF3sforos, pilas, una vela azul y un sachet de sal."
+    - "\u2026\xBFVela azul?"
+    - Especificidad es supervivencia, querido.
+    lineasFinales:
+    - "Est\xE1 bien\u2026 La sal me guiar\xE1."
+    - ...
+    - No esperes a estar listo, nadie lo esta.
 --- !u!1 &8428329372082437604
 GameObject:
   m_ObjectHideFlags: 0

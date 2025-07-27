@@ -59,7 +59,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerName: bravo
-  dialogos: []
+  dialogos:
+  - lineasEntrada:
+    - "Ya viste lo que pas\xF3 ah\xED atr\xE1s? Fuaaa esta de locos"
+    - "Esta dif\xEDcil hoy d\xEDa"
+    - "Ni que lo digas yo estaba pasando a buscar a mi prima y el impacto nos sac\xF3
+      del trayecto y ah\xED comenz\xF3 lo peor"
+    - Que fue lo que paso
+    - "\xA1Todos corr\xEDan gritando quisieron sacarme del coche, pero los deje atr\xE1s
+      jajaja! Cargame el tanque y dame unos almuerzos para 3 que me espera mi abuela."
+    lineasFinales: []
+  - lineasEntrada:
+    - "Paaa, esta nave necesita un buen lavado gal\xE1ctico... \xBFTen\xE9s fichas
+      para el autolavado?"
+    - "S\xED, claro, \xBFcu\xE1ntas quer\xE9s?"
+    - "Dame dos. Una para la nave, y otra... por si aparece mi ex y se quiere lavar
+      la culpa... Ah, y un juguito. Que pilotar con estilo tambi\xE9n da sed."
+    lineasFinales:
+    - "Gracias, m\xE1quina."
+  - lineasEntrada:
+    - "Che... \xBFme das un perfume de esos de mostrador? Algo discreto, tipo \u201Cconquistador
+      interestelar\u201D."
+    - "Solo tengo de vainilla, coco o \u201Cmotor quemado\u201D."
+    - "Coco. El de motor lo dejo para cuando vuelva a ver a mi t\xEDo."
+    lineasFinales:
+    - "Vos sab\xE9s que mi abuela siempre dice: \u201Cand\xE1 lindo por dentro, pero
+      tambi\xE9n perfumado por fuera\u201D. Sabia, la vieja."
+  - lineasEntrada:
+    - "\xBFTen\xE9s de esas galletitas que vienen en envase plateado? Las que parecen
+      tra\xEDdas del futuro."
+    - "S\xED, me queda un paquete."
+    - "Mand\xE1melo. Son para mi abuela. Ella me mimo toda la infancia... ahora le
+      devuelvo con galletas y estilo."
+    - "Aunque lo del estilo seguro lo hered\xF3 de m\xED."
+    lineasFinales: []
 --- !u!1 &6208405566886202157
 GameObject:
   m_ObjectHideFlags: 0
