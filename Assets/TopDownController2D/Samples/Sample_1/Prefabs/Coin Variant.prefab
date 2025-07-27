@@ -126,4 +126,4 @@ MonoBehaviour:
   canBePickupBy:
     serializedVersion: 2
     m_Bits: 4294967295
-  moneyAmount: 50
+  moneyAmount: 20
