@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e602b590e3c2204a80cc5d194d7d3e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerId: abuelita
   customerName: abuela
   dialogos:
   - lineasEntrada:

@@ -7,6 +7,7 @@ public class TaskCompletionManager : MonoBehaviour
     public CarryStackManager carryStackManager;
     public MoneyManager moneyManager;
     public DialogBox dialogBox;
+    public CustomerController customerController; // Assign in Inspector
     public int baseRewardPerItem = 500;
     public int discountPerExtraItem = 200;
     public Button completeTaskButton;
@@ -61,5 +62,11 @@ public class TaskCompletionManager : MonoBehaviour
         moneyManager.SumarCreditos(reward);
         Debug.Log($"Task complete! Delivered: {delivered}, Extra: {extra}, Reward: {reward}");
         // Optionally, clear the current task or show a summary
+
+        // Notify customer controller to advance the customer loop
+        if (customerController != null)
+        {
+            customerController.OnTaskCompleted();
+        }
     }
 }
