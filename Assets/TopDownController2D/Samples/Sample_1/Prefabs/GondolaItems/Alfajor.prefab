@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6474382169062534513, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_Name
-      value: Cigarros 1
+      value: Alfajor
       objectReference: {fileID: 0}
     - target: {fileID: 6474382169062534514, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_LocalScale.x
@@ -140,4 +140,4 @@ MonoBehaviour:
   interactionRange: 1.5
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 3.5
-  itemID: 1
+  itemID: 0

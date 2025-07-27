@@ -140,4 +140,4 @@ MonoBehaviour:
   interactionRange: 1.5
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 3.5
-  itemID: 0
+  itemID: 4
