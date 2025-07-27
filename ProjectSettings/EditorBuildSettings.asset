@@ -12,11 +12,17 @@ EditorBuildSettings:
     path: Assets/Topdown.unity
     guid: a3d708f68f5d1f1418f2647d2a93cd74
   - enabled: 1
+    path: Assets/Scenes/meinMenu.unity
+    guid: f85f58fcaf410d1488ecb4035787ae80
+  - enabled: 1
     path: Assets/TopDownController2D/Samples/Sample_1/Scenes/TopDownExampleScene.unity
     guid: ebae8f302624b1d41af5c7f36a78336f
   - enabled: 1
     path: Assets/Scenes/Skibidi.unity
     guid: e6dbbe487497a8e4e9818ff715ed6d01
+  - enabled: 1
+    path: Assets/AtiendoBoludos/AtiendoBoludos.unity
+    guid: 358d651205c88634f95b25e666e1bd8e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 153cfd24cf4305c44bc603b9f9d00ea5, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 32d4462ee9578b8498b2de0a0fe41121, type: 3}

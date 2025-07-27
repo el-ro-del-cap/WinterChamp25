@@ -52,26 +52,26 @@ public class MouseMovement : MonoBehaviour
         }
     }
 
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    #isMoving = false;
-        //}
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    #isMoving = false;
+    //}
 
-        // Update is called once per frame
-        void Update()
-            {
+    // Update is called once per frame
+    void Update()
+    {
         //This one handles the plunger not leaving the toilet boundaries
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (isAnchored == true && transform.position.y < anchorOffset)
-                {
+        {
             transform.position = new Vector3(anchorPos.position.x, (anchorPos.position.y - anchorOffset));
-                }
+        }
         else if (isAnchored == true && transform.position.y > wallOffset)
-                {
+        {
             transform.position = new Vector3(anchorPos.position.x, (wallPos.position.y + wallOffset));
-                }
+        }
 
-            }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //when the plunger enters the anchor collider it enables the invisible ceiling and enters the anchored state
@@ -100,13 +100,26 @@ public class MouseMovement : MonoBehaviour
         {
             Debug.Log("Win");
             isMoving = false;
-            GetComponent<BoxCollider2D>().enabled = false;
+            isAnchored = false;
+          //  GetComponent<BoxCollider2D>().enabled = false;
             overlord.updateCount();
+            fling();
         }
         else
         {
             overlord.plungePlus();
         }
+    }
+    private void fling()
+    {
+        anchorPos.gameObject.SetActive(false);
+        wallPos.gameObject.SetActive(false);
+        Rigidbody2D rigi2 = GetComponent<Rigidbody2D>();
+        rigi2.gravityScale = 8;
+        rigi2.constraints = RigidbodyConstraints2D.None;
+        rigi2.AddForce(transform.up * 12f, ForceMode2D.Impulse);
+        rigi2.AddForce(new Vector3 (100, 100) * 8f * Time.deltaTime, ForceMode2D.Impulse);
+        rigi2.AddTorque((-400f * Mathf.Deg2Rad) * 120f); 
     }
       
 }
