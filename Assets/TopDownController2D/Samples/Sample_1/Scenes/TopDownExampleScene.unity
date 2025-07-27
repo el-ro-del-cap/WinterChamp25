@@ -14163,7 +14163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creditsText: {fileID: 836159925}
   credits: 0
-  maxCredits: 10000
+  maxCredits: 100000
   lightExpenses: 2000
   gameTime: {fileID: 774657938}
   coinPopupPrefab: {fileID: 7430643768633882510, guid: 7f39856c31e5d824eab9eda4a049e6aa, type: 3}
