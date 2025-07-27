@@ -276,10 +276,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5935364265949546195}
     m_Modifications:
-    - target: {fileID: 1748225687832783092, guid: 4155cc132adac1146891e7284e6f8e73, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1795600793841825654, guid: 4155cc132adac1146891e7284e6f8e73, type: 3}
       propertyPath: m_Name
       value: particleburst
@@ -742,10 +738,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5935364265949546195}
     m_Modifications:
-    - target: {fileID: 2327587232868466508, guid: cbf23866667365f48806d542b79de9b4, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2370286661926805710, guid: cbf23866667365f48806d542b79de9b4, type: 3}
       propertyPath: m_Name
       value: particlesqrt
