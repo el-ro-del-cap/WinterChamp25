@@ -69,6 +69,6 @@ public class MainMenu : MonoBehaviour
         yield return StartCoroutine(TransitionToPosition(imageToMove, finalPosition));
 
         // Carga la nueva escena
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(1);
     }
 }
