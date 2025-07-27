@@ -5,6 +5,8 @@ public class CarryStackManager : MonoBehaviour
 {
     public static CarryStackManager Instance { get; private set; }
     public float stackOffsetY = 1.0f;
+    [Tooltip("The Y position (local) where the first item in the stack will be placed above the player.")]
+    public float stackStartY = 0.0f;
     private List<GameObject> carriedItems = new List<GameObject>();
     private Transform playerTransform;
 
@@ -34,7 +36,12 @@ public class CarryStackManager : MonoBehaviour
     {
         for (int i = 0; i < carriedItems.Count; i++)
         {
-            carriedItems[i].transform.localPosition = new Vector3(0, stackOffsetY * (i + 1), 0);
+            // Always reset localPosition.x and z to 0, and y to stacking value
+            Vector3 pos = carriedItems[i].transform.localPosition;
+            pos.x = 0;
+            pos.z = 0;
+            pos.y = stackStartY + stackOffsetY * i;
+            carriedItems[i].transform.localPosition = pos;
         }
     }
 }
