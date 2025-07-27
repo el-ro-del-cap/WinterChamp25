@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
@@ -138,6 +139,10 @@ public class MiniGameManager : MonoBehaviour
 				{
 					Debug.LogError("FuelMinigamePrefab not assigned in MiniGameManager!");
 				}
+				break;
+			case "AtiendoBoludos":
+				Debug.Log("--- Switching to AtiendoBoludos UI/Canvas! ---");
+				CameraManager.Instance.ShowObject("AtiendoBoludos");
 				break;
 			default:
 				Debug.LogWarning($"Mini-game ID '{miniGameID}' not recognized.");
