@@ -1,3 +1,4 @@
+
 // InteractionAreaManager.cs (Modified)
 using UnityEngine;
 // Remove 'using TopDownCharacter2D.Controllers;' as it's not directly needed for the event anymore
@@ -25,14 +26,25 @@ public class InteractionAreaManager : MonoBehaviour, IInteractable
     private GameObject spawnedArrow;
 
     public string InteractionID => interactionAreaID;
-
-    public void Interact(GameObject interactor)
+	[Header("Minigame Settings")]
+    public int arrowGameVictories = 3;
+    [Header("Reward Settings")]
+    public GameObject rewardItemPrefab;
+    // Call this to give the reward item to the player (if any)
+    public void GiveRewardItemToPlayer()
+    {
+        if (rewardItemPrefab != null && CarryStackManager.Instance != null)
+        {
+            GameObject item = Instantiate(rewardItemPrefab);
+            CarryStackManager.Instance.AddToStack(item);
+        }
+    }    public void Interact(GameObject interactor)
     {
         Debug.Log($"Player interacted with area: {gameObject.name} (ID: {interactionAreaID})");
-        
+
         if (MiniGameManager.Instance != null)
         {
-            MiniGameManager.Instance.StartMinigame(interactionAreaID);
+            MiniGameManager.Instance.StartMinigame(interactionAreaID, this);
         }
         else
         {

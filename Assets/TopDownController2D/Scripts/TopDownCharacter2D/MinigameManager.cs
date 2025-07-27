@@ -33,7 +33,10 @@ public class MiniGameManager : MonoBehaviour
 
 	private Coroutine minorWinCoroutine;
 
-	public void StartMinigame(string miniGameID)
+	// The interaction area that started the minigame (set by InteractionAreaManager)
+	private InteractionAreaManager currentInteractionArea;
+
+	public void StartMinigame(string miniGameID, InteractionAreaManager interactionArea = null)
 	{
 		Debug.Log($"MiniGameManager: Attempting to start mini-game with ID: {miniGameID}");
 
@@ -43,6 +46,11 @@ public class MiniGameManager : MonoBehaviour
 		{
 			inputController = playerObj.GetComponent<TopDownCharacter2D.Controllers.TopDownInputController>();
 		}
+
+		// Track which interaction area started the minigame
+		currentInteractionArea = interactionArea;
+
+		int arrowVictories = interactionArea != null ? interactionArea.arrowGameVictories : 3;
 
 		switch (miniGameID)
 		{
@@ -63,6 +71,11 @@ public class MiniGameManager : MonoBehaviour
 								StopCoroutine(minorWinCoroutine);
 								minorWinCoroutine = null;
 							}
+							// Give item reward if set
+							if (currentInteractionArea != null)
+							{
+								currentInteractionArea.GiveRewardItemToPlayer();
+							}
 						});
 					}
 					if (minorWinCoroutine != null)
@@ -70,7 +83,7 @@ public class MiniGameManager : MonoBehaviour
 						StopCoroutine(minorWinCoroutine);
 					}
 					minorWinCoroutine = StartCoroutine(HandleStratagemMinorWins(stratagemGame));
-					stratagemGame.DoArrowsGame(3);
+					stratagemGame.DoArrowsGame(arrowVictories);
 				}
 				else
 				{
@@ -98,9 +111,13 @@ public class MiniGameManager : MonoBehaviour
 					{
 						Debug.Log("--- Toilet Won! ---");
 						moneyManager.SumarCreditos(toiletWinReward);
+						if (currentInteractionArea != null)
+						{
+							currentInteractionArea.GiveRewardItemToPlayer();
+						}
 						if (inputController != null)
 							inputController.SetMovementEnabled(true);
-							CameraManager.Instance.SwitchTo("TopDownCamera");
+						CameraManager.Instance.SwitchTo("TopDownCamera");
 					};
 				}
 				break;
@@ -111,6 +128,10 @@ public class MiniGameManager : MonoBehaviour
 					// You can instantiate or enable the fuel minigame here as needed
 					// For now, just simulate a win for demonstration
 					moneyManager.SumarCreditos(fuelWinReward);
+					if (currentInteractionArea != null)
+					{
+						currentInteractionArea.GiveRewardItemToPlayer();
+					}
 					Debug.Log("Fuel minigame completed, reward given.");
 				}
 				else

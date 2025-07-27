@@ -851,6 +851,8 @@ MonoBehaviour:
   interactionAreaID: Arrows
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 1
+  arrowGameVictories: 4
+  rewardItemPrefab: {fileID: 0}
 --- !u!19719996 &563414299
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -3651,6 +3653,8 @@ MonoBehaviour:
   interactionAreaID: Toilet
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 1
+  arrowGameVictories: 3
+  rewardItemPrefab: {fileID: 0}
 --- !u!19719996 &790221363
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -7321,6 +7325,8 @@ MonoBehaviour:
   interactionAreaID: Arrows
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 1
+  arrowGameVictories: 1
+  rewardItemPrefab: {fileID: 2095189256902967617, guid: 4167940209eff114cb42d6e65a8dcb58, type: 3}
 --- !u!19719996 &1136563142
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -8214,6 +8220,8 @@ MonoBehaviour:
   interactionAreaID: Arrows
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 1
+  arrowGameVictories: 1
+  rewardItemPrefab: {fileID: 2095189256902967617, guid: c24fad3d5d381774aae74562ebc364ad, type: 3}
 --- !u!19719996 &1410149205
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -12730,6 +12738,8 @@ MonoBehaviour:
   interactionAreaID: Toilet
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 1
+  arrowGameVictories: 3
+  rewardItemPrefab: {fileID: 0}
 --- !u!19719996 &1938897028
 TilemapCollider2D:
   m_ObjectHideFlags: 0
