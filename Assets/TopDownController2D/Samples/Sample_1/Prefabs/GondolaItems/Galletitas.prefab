@@ -22,12 +22,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6474382168466530740, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 6474382168466530741, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -416924880923863321, guid: 419d6fc8849007d45a0f82465ebf8c74, type: 3}
+      objectReference: {fileID: 8394414835710451929, guid: a32fdb2422109c64a906002b97910227, type: 3}
     - target: {fileID: 6474382168466530741, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6474382169062534513, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_Name
-      value: Cigarros 8
+      value: Galletitas
       objectReference: {fileID: 0}
     - target: {fileID: 6474382169062534514, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_LocalScale.x
@@ -140,4 +140,4 @@ MonoBehaviour:
   interactionRange: 1.5
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 3.5
-  itemID: 8
+  itemID: 5

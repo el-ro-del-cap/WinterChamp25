@@ -22,12 +22,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6474382168466530740, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6474382168466530741, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -416924880923863321, guid: 419d6fc8849007d45a0f82465ebf8c74, type: 3}
+      objectReference: {fileID: -6652682879129300426, guid: ea708d9605d263e4990c26a0a8bddb42, type: 3}
     - target: {fileID: 6474382168466530741, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6474382169062534513, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_Name
-      value: Cigarros 3
+      value: Refresco
       objectReference: {fileID: 0}
     - target: {fileID: 6474382169062534514, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_LocalScale.x
@@ -97,6 +97,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6474382169157037451, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12.336
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474382169157037451, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474382169157037451, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474382169157037451, guid: f0259e7b9d0c801448d456d6d455beae, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.02
       objectReference: {fileID: 0}
@@ -140,4 +152,4 @@ MonoBehaviour:
   interactionRange: 1.5
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 3.5
-  itemID: 3
+  itemID: 7
