@@ -1,9 +1,110 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class CustomerController : MonoBehaviour {
+    [Header("Dialog Integration")]
+    public DialogBox dialogBox;
+    // Called by TaskCompletionManager when a task is completed
+        // Dialog progression state
+    private List<string> currentDialogLines;
+    private int currentDialogIndex;
+    private bool dialogActive;
+    private List<string> currentSuccessLines;
+    private int currentSuccessIndex;
+    private bool successDialogActive;
+    public TaskGenerator taskGenerator;
+    private bool pendingTaskAssignment = false;
+    // Show the current dialog line in the dialog box
+    public void OnTaskCompleted()
+    {
+        // Show success lines for this customer, then remove customer and spawn next
+        if (currentCustomer != null)
+        {
+            var customerObj = currentCustomer.GetComponent<CustomerObjectScript>();
+            string customerId = customerObj != null ? customerObj.customerId : currentCustomer.customerName;
+            var dialogEntry = CustomerDialogManager.Instance.GetDialogForCustomer(customerId);
+            if (dialogEntry != null)
+            {
+                var dialog = CustomerDialogManager.Instance.GetRandomDialog(customerId);
+                if (dialog != null && dialogBox != null && dialog.successLines != null && dialog.successLines.Count > 0)
+                {
+                    currentSuccessLines = dialog.successLines;
+                    currentSuccessIndex = 0;
+                    successDialogActive = true;
+                    ShowCurrentSuccessLine();
+                    return;
+                }
+            }
+        }
+        // If no success lines, just remove customer and spawn next
+        RemoveAndSpawnNextCustomer();
+    }
+
+    private void ShowCurrentSuccessLine()
+    {
+        if (dialogBox != null && currentSuccessLines != null && currentSuccessIndex < currentSuccessLines.Count)
+        {
+            dialogBox.ShowDialogLines(new List<string> { currentSuccessLines[currentSuccessIndex] });
+        }
+    }
+
+    private void RemoveAndSpawnNextCustomer()
+    {
+        if (currentCustomer != null)
+        {
+            CustomerLeaveScreen();
+        }
+        StartCoroutine(SpawnNextCustomerAfterDelay(carLeaveArriveTime));
+    }
+
+    private IEnumerator SpawnNextCustomerAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SendNextCustomer();
+        AssignDialogAndTaskToCurrentCustomer();
+    }
+
+    // Assign dialog and generate a task for the current customer
+    private void AssignDialogAndTaskToCurrentCustomer()
+    {
+        if (currentCustomer != null)
+        {
+            var customerObj = currentCustomer.GetComponent<CustomerObjectScript>();
+            string customerId = customerObj != null ? customerObj.customerId : currentCustomer.customerName;
+            var dialogEntry = CustomerDialogManager.Instance.GetDialogForCustomer(customerId);
+            if (dialogEntry != null)
+            {
+                var dialog = CustomerDialogManager.Instance.GetRandomDialog(customerId);
+                if (dialog != null && dialogBox != null)
+                {
+                    // Set the face sprite for this customer
+                    dialogBox.SetCustomerFaceById(customerId);
+                    currentDialogLines = dialog.requestLines;
+                    currentDialogIndex = 0;
+                    dialogActive = true;
+                    ShowCurrentDialogLine();
+                    // Store dialog for task assignment after dialog
+                    pendingTaskAssignment = true;
+                }
+
+   
+                // Optionally: generate a new task for this customer here
+                // If you have a TaskGenerator, call it here and pass the result to dialogBox.ShowTask(task)
+            }
+        }
+    }
+
+ private void ShowCurrentDialogLine()
+    {
+        if (dialogBox != null && currentDialogLines != null && currentDialogIndex < currentDialogLines.Count)
+        {
+            dialogBox.ShowDialogLines(new List<string> { currentDialogLines[currentDialogIndex] });
+        }
+    }
 
     public CustomerData[] customerData;
 
@@ -56,6 +157,7 @@ public class CustomerController : MonoBehaviour {
         currentCustomerIndex = customerIndex;
         MoveCustomer(customerTalkPosition.position, carLeaveArriveTime, delegate {
             _canSendNextCustomer = true;
+            AssignDialogAndTaskToCurrentCustomer();
         });
     }
 
@@ -150,25 +252,61 @@ public class CustomerController : MonoBehaviour {
             _canSendNextCustomer = true;
         });
     }
-
+    void Start() {
+        SendNextCustomer();
+    }
     private void RemoveCustomer() {
         Destroy(currentCustomer.gameObject);
         currentCustomer = null;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() {
-        
-    }
-
-    // Update is called once per frame
     void Update() {
-
+        if (dialogActive && currentDialogLines != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                currentDialogIndex++;
+                if (currentDialogIndex < currentDialogLines.Count)
+                {
+                    ShowCurrentDialogLine();
+                }
+                else
+                {
+                    dialogActive = false;
+                    Debug.Log("Dialog finished for customer: " + (currentCustomer != null ? currentCustomer.customerName : "null"));
+                    // Always assign a random task when dialog finishes
+                    if (taskGenerator != null)
+                    {
+                        Debug.Log("Generating new task for customer: " + (currentCustomer != null ? currentCustomer.customerName : "null"));
+                        taskGenerator.GenerateRandomTask();
+                    }
+                    pendingTaskAssignment = false;
+                    if (dialogBox != null)
+                        dialogBox.Hide();
+                }
+            }
+        }
+        else if (successDialogActive && currentSuccessLines != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                currentSuccessIndex++;
+                if (currentSuccessIndex < currentSuccessLines.Count)
+                {
+                    ShowCurrentSuccessLine();
+                }
+                else
+                {
+                    successDialogActive = false;
+                    if (dialogBox != null)
+                        dialogBox.Hide();
+                    RemoveAndSpawnNextCustomer();
+                }
+            }
+        }
     }
-
-
-
-
+    // (Stray else block removed)
 
 }
 

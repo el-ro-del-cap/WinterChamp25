@@ -1,4 +1,5 @@
 
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,11 +11,55 @@ public class ItemSpriteMapping
 {
     public string itemID;
     public Sprite sprite;
+
+
 }
 
-public class DialogBox : MonoBehaviour
+public class DialogBox : MonoBehaviour{
+[System.Serializable]
+public class CustomerFaceMapping
 {
+    public string customerId;
+    public Sprite faceSprite;
+}
+    [Header("Customer Faces")]
+    public List<CustomerFaceMapping> customerFaces;
+    // Set the customer face by customerId
 
+
+    [Header("Customer Face UI")]
+    public UnityEngine.UI.Image customerFace;
+    // Set the customer face sprite
+    public void SetCustomerFace(Sprite faceSprite)
+    {
+        if (customerFace != null)
+            customerFace.sprite = faceSprite;
+    }
+	    public void SetCustomerFaceById(string customerId)
+    {
+        foreach (var mapping in customerFaces)
+        {
+            if (mapping.customerId == customerId)
+            {
+                SetCustomerFace(mapping.faceSprite);
+                return;
+            }
+        }
+        // Optionally set a default face if not found
+        SetCustomerFace(null);
+    }
+    // Show a list of dialog lines in the dialogText UI
+	public void ShowDialogLines(List<string> lines)
+	{
+		if (dialogText != null && lines != null && lines.Count > 0)
+		{
+			dialogText.text = string.Join("\n", lines);
+			if (dialogPopupGroup != null)
+				dialogPopupGroup.SetActive(true);
+			else
+				gameObject.SetActive(true);
+		}
+	}
     [Header("Dialog Popup Group (shows for 10s)")]
     public GameObject dialogPopupGroup;
     public TMP_Text dialogText;
@@ -32,6 +77,11 @@ public class DialogBox : MonoBehaviour
     private Dictionary<string, GameObject> currentTaskIcons = new Dictionary<string, GameObject>();
     private Task currentTask;
 
+    // Returns the current task (for TaskCompletionManager)
+    public Task GetCurrentTask()
+    {
+        return currentTask;
+    }
     void Awake()
     {
         // Build the dictionary for fast lookup

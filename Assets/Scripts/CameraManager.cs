@@ -98,30 +98,36 @@ public class CameraManager : MonoBehaviour
     }
     public void ShowObject(string name)
     {
+        Debug.Log($"Toggling object: {name}");
         foreach (var namedObj in objects)
         {
             if (namedObj.objectName == name && namedObj.obj != null)
-                namedObj.obj.SetActive(true);
+            {
+                bool isActive = namedObj.obj.activeSelf;
+                namedObj.obj.SetActive(!isActive);
+            }
             else if (namedObj.obj != null)
+            {
                 namedObj.obj.SetActive(false);
+            }
         }
     }
-	public void SwitchBack()
-	{
-		if (stack.Count > 0)
-		{
-			// Disable current
-			if (current.IsCamera && current.cam != null)
-				current.cam.enabled = false;
-			else if (current.IsObject && current.obj != null)
-				current.obj.SetActive(false);
+    public void SwitchBack()
+    {
+        if (stack.Count > 0)
+        {
+            // Disable current
+            if (current.IsCamera && current.cam != null)
+                current.cam.enabled = false;
+            else if (current.IsObject && current.obj != null)
+                current.obj.SetActive(false);
 
-			// Pop and enable previous
-			current = stack.Pop();
-			if (current.IsCamera && current.cam != null)
-				current.cam.enabled = true;
-			else if (current.IsObject && current.obj != null)
-				current.obj.SetActive(true);
-		}
-	}
+            // Pop and enable previous
+            current = stack.Pop();
+            if (current.IsCamera && current.cam != null)
+                current.cam.enabled = true;
+            else if (current.IsObject && current.obj != null)
+                current.obj.SetActive(true);
+        }
+    }
 }
