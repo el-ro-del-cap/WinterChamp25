@@ -7,74 +7,65 @@ public class GameTime : MonoBehaviour
     public TMP_Text timeText;
 
     [Header("Time Parameters")]
-    [Tooltip("Velocidad de avance de los minutos por segundo en tiempo real.")]
-    public float minutesPerSecond = 5f;
+    [Tooltip("DuraciÃ³n del dÃ­a en segundos de tiempo real.")]
+    public float dayDurationSeconds = 120f; // 2 minutos por dÃ­a por defecto
 
     [Header("Initial Values")]
     public int startDay = 1;
-    public int startHour = 9;
-    public int startMinute = 0;
 
     public int currentDay;
-    private int currentHour;
-    private int currentMinute;
-    private float minuteTimer;
+    private float dayTimer;
+    private bool dayEnded = false;
+
+    [Header("MoneyManager Reference")]
+    public MoneyManager moneyManager;
 
     void Start()
     {
-        // Inicializar las variables con los valores de inicio
         currentDay = startDay;
-        currentHour = startHour;
-        currentMinute = startMinute;
-        minuteTimer = 0f;
-
-        // Mostrar la hora inicial
+        dayTimer = dayDurationSeconds;
+        dayEnded = false;
         UpdateTimeText();
     }
 
     void Update()
     {
-        // Aumentar el temporizador
-        minuteTimer += Time.deltaTime * minutesPerSecond;
-
-        // Comprobar si ha pasado un minuto completo
-        if (minuteTimer >= 60f)
+        if (!dayEnded)
         {
-            minuteTimer -= 60f; // Restar 60 para que el temporizador siga su curso
-            AdvanceMinute();
+            dayTimer -= Time.deltaTime;
+            if (dayTimer <= 0f)
+            {
+                dayTimer = 0f;
+                EndDay();
+            }
+            UpdateTimeText();
         }
     }
 
-    private void AdvanceMinute()
+    private void EndDay()
     {
-        currentMinute++;
-
-        // Si los minutos superan 59, avanzar la hora
-        if (currentMinute > 59)
+        dayEnded = true;
+        // Cobrar impuestos y mostrar popup
+        if (moneyManager != null)
         {
-            currentMinute = 0;
-            currentHour++;
-
-            // Si la hora supera las 17, avanzar el día y resetear la hora
-            if (currentHour > 17)
-            {
-                currentHour = 9; // Volver a las 09:00
-                currentDay++;
-
-                Debug.Log("¡Pasó un día!");
-            }
+            moneyManager.DeductExpensesWithPopup();
         }
+        // Esperar un poco y luego empezar el siguiente dÃ­a
+        Invoke(nameof(StartNextDay), 2f);
+    }
 
-        // Actualizar el texto en la UI
+    private void StartNextDay()
+    {
+        currentDay++;
+        dayTimer = dayDurationSeconds;
+        dayEnded = false;
         UpdateTimeText();
     }
 
     private void UpdateTimeText()
     {
-        // Formatear la hora y los minutos con dos dígitos (ej. 09 en vez de 9)
-        string minuteString = currentMinute.ToString("00");
-        string hourString = currentHour.ToString("00");
-
-        timeText.text = $"Día {currentDay} - {hourString}:{minuteString}";
+        int segundosRestantes = Mathf.CeilToInt(dayTimer);
+        if (segundosRestantes < 0) segundosRestantes = 0;
+        timeText.text = $"DÃ­a {currentDay} - {segundosRestantes} segundos del dÃ­a";
     }
 }

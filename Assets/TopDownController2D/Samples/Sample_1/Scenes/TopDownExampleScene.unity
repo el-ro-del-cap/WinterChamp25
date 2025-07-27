@@ -4649,11 +4649,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 1300253491}
-  minutesPerSecond: 300
+  dayDurationSeconds: 120
   startDay: 1
-  startHour: 9
-  startMinute: 0
   currentDay: 0
+  moneyManager: {fileID: 0}
 --- !u!4 &774657939
 Transform:
   m_ObjectHideFlags: 0
@@ -8394,7 +8393,7 @@ MonoBehaviour:
   m_margin: {x: -284.5689, y: 217.5675, z: -561.43604, w: -439.86234}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &992555784
@@ -9103,7 +9102,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -9134,7 +9133,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -318.10425, y: 0, z: -184.61401, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13790,7 +13789,7 @@ MonoBehaviour:
   m_margin: {x: -284.5689, y: 217.5675, z: -561.43604, w: -439.86234}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1679268555

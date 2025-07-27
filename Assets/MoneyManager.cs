@@ -17,9 +17,10 @@ public class MoneyManager : MonoBehaviour
     public GameTime gameTime;
 
     private int lastDeductedDay = 0;
-	
+
     [Header("Coin Popup UI")]
     public GameObject coinPopupPrefab;
+    public GameObject lossPopupPrefab; // Nuevo campo para popup de pérdida
     public Transform coinPopupLayoutParent;
     public int coinPopupMaxCount = 7;
     public float coinPopupDuration = 3f;
@@ -36,7 +37,7 @@ public class MoneyManager : MonoBehaviour
         // Verificar si han pasado 5 d�as y no hemos deducido los gastos todav�a en este d�a
         if (gameTime != null && gameTime.currentDay % 5 == 0 && gameTime.currentDay != lastDeductedDay)
         {
-            DeductExpenses();
+            DeductExpensesWithPopup();
         }
     }
 
@@ -68,11 +69,13 @@ public class MoneyManager : MonoBehaviour
 
     private void SpawnCoinPopup(int amount)
     {
-        if (coinPopupPrefab == null || coinPopupLayoutParent == null) return;
-        GameObject popup = GameObject.Instantiate(coinPopupPrefab, coinPopupLayoutParent);
+        if (coinPopupLayoutParent == null) return;
+        GameObject prefabToUse = amount < 0 && lossPopupPrefab != null ? lossPopupPrefab : coinPopupPrefab;
+        if (prefabToUse == null) return;
+        GameObject popup = GameObject.Instantiate(prefabToUse, coinPopupLayoutParent);
         var text = popup.GetComponentInChildren<TMPro.TMP_Text>();
         if (text != null)
-            text.text = $"+{amount}";
+            text.text = amount > 0 ? $"+{amount}" : $"{amount}";
         activeCoinPopups.Add(popup);
         if (activeCoinPopups.Count > coinPopupMaxCount)
         {
@@ -92,20 +95,18 @@ public class MoneyManager : MonoBehaviour
         }
     }
 
-    private void DeductExpenses()
+    public void DeductExpensesWithPopup()
     {
         credits -= lightExpenses;
-
-        // Evitar que los cr�ditos bajen de 0
         if (credits < 0)
         {
             credits = 0;
         }
-
         Debug.Log("Gastos de luz!");
-        lastDeductedDay = gameTime.currentDay; // Actualizar el d�a de la �ltima deducci�n
-
+        lastDeductedDay = gameTime.currentDay;
         UpdateCreditsText();
+        // Mostrar popup negativo
+        SpawnCoinPopup(-lightExpenses);
     }
 
     private void UpdateCreditsText()
