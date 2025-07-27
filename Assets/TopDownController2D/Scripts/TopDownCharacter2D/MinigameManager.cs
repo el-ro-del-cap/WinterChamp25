@@ -124,20 +124,47 @@ public class MiniGameManager : MonoBehaviour
 				break;
 			case "Fuel":
 				Debug.Log("--- Starting Fuel Game! ---");
-				if (fuelMinigamePrefab != null)
+				// Use the assigned reference to the FuelMinigame root GameObject
+				GameObject fuelMinigameRoot = fuelMinigamePrefab;
+				CameraManager.Instance.ShowObject("FuelMinigame", fuelMinigameRoot);
+				// Find the GameManager component in a child named "GameManager"
+				if (fuelMinigameRoot != null)
 				{
-					// You can instantiate or enable the fuel minigame here as needed
-					// For now, just simulate a win for demonstration
-					moneyManager.SumarCreditos(fuelWinReward);
-					if (currentInteractionArea != null)
+					Transform gmChild = fuelMinigameRoot.transform.Find("GameManager");
+					if (gmChild != null)
 					{
-						currentInteractionArea.GiveRewardItemToPlayer();
+						var fuelGameManager = gmChild.GetComponent<GameManager>();
+						if (fuelGameManager != null)
+						{
+							Debug.Log("Setting OnGameEndedCallback for Fuel GameManager (child)");
+							fuelGameManager.OnGameEndedCallback = () => {
+								Debug.Log("Fuel GameManager OnGameEndedCallback invoked");
+								// Hide the minigame UI/canvas
+								CameraManager.Instance.ShowObject("FuelMinigame", fuelMinigameRoot);
+								// Give reward
+								moneyManager.SumarCreditos(fuelWinReward);
+								if (currentInteractionArea != null)
+								{
+									currentInteractionArea.GiveRewardItemToPlayer();
+								}
+								Debug.Log("Fuel minigame completed, reward given.");
+							};
+							Debug.Log("Calling StartNewGame for Fuel GameManager (child)");
+							fuelGameManager.StartNewGame();
+						}
+						else
+						{
+							Debug.LogError("GameManager script not found on child 'GameManager' of FuelMinigame root!");
+						}
 					}
-					Debug.Log("Fuel minigame completed, reward given.");
+					else
+					{
+						Debug.LogError("Child named 'GameManager' not found under FuelMinigame root!");
+					}
 				}
 				else
 				{
-					Debug.LogError("FuelMinigamePrefab not assigned in MiniGameManager!");
+					Debug.LogError("FuelMinigame root GameObject is not assigned!");
 				}
 				break;
 			case "AtiendoBoludos":

@@ -1125,6 +1125,8 @@ MonoBehaviour:
   - 6
   - 7
   - 8
+  - 9
+  - 10
   dialogOptions:
   - Hola
   - Hola 2
@@ -4618,6 +4620,10 @@ MonoBehaviour:
     sprite: {fileID: -1389860050349794336, guid: 9c4138def13e4334cb74eef458017500, type: 3}
   - itemID: 8
     sprite: {fileID: 7606023263495155399, guid: b6274f2e93661d447876b4c87969a6d0, type: 3}
+  - itemID: 9
+    sprite: {fileID: 2806341811249490073, guid: 06d9eae0662e7ef428818b3e3dac8e54, type: 3}
+  - itemID: 10
+    sprite: {fileID: -6652682879129300426, guid: ea708d9605d263e4990c26a0a8bddb42, type: 3}
   tickSprite: {fileID: 21300000, guid: 9d39a3b841e40f543b973f158373a097, type: 3}
 --- !u!1 &774657937
 GameObject:
@@ -4717,7 +4723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionPrompt: Press 'E' to interact!
   interactionRange: 2
-  interactionAreaID: Toilet
+  interactionAreaID: Fuel
   arrowPrefab: {fileID: 7797874833795207478, guid: 2f7478412fada11489726c3fae9cb1cd, type: 3}
   arrowOffsetY: 1
   arrowGameVictories: 3
@@ -9171,6 +9177,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8005286312012161338, guid: 23c5ad8c748b70647bf9991c82e36f1c, type: 3}
   m_PrefabInstance: {fileID: 1867613511615642786}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1344160815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 191826336148639309, guid: b392443081455e340951c82d70c118e3, type: 3}
+  m_PrefabInstance: {fileID: 3288412431402146536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1380944440
 GameObject:
   m_ObjectHideFlags: 0
@@ -10144,7 +10155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a746dbb690e664bb0d9392d6b107ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelMinigamePrefab: {fileID: 0}
+  fuelMinigamePrefab: {fileID: 1344160815}
   moneyManager: {fileID: 1912290764}
   stratagemMinorWinReward: 50
   toiletWinReward: 200
@@ -14167,7 +14178,7 @@ MonoBehaviour:
   lightExpenses: 2000
   gameTime: {fileID: 774657938}
   coinPopupPrefab: {fileID: 7430643768633882510, guid: 7f39856c31e5d824eab9eda4a049e6aa, type: 3}
-  lossPopupPrefab: {fileID: 0}
+  lossPopupPrefab: {fileID: 7430643768633882510, guid: 0b7771f25ddc3e445a744a7167645c0f, type: 3}
   coinPopupLayoutParent: {fileID: 501303394}
   coinPopupMaxCount: 7
   coinPopupDuration: 3
@@ -15547,6 +15558,75 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2942259890036186167, guid: e3b85b1c82bc32c40a00237cb668d9ec, type: 3}
   m_PrefabInstance: {fileID: 7132607190263335057}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3288412431402146536
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 191826336148639309, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_Name
+      value: FuelMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 191826336148639309, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005450541381201034, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5268087952689634343, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737213046894046875, guid: b392443081455e340951c82d70c118e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b392443081455e340951c82d70c118e3, type: 3}
 --- !u!4 &3653673580602290043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8262181120949968131, guid: 6962df62f78d315468fc725efd54d809, type: 3}
@@ -16231,3 +16311,4 @@ SceneRoots:
   - {fileID: 2050299885}
   - {fileID: 8050217439389514051}
   - {fileID: 7132607190263335057}
+  - {fileID: 3288412431402146536}

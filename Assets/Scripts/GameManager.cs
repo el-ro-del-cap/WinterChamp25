@@ -1,24 +1,36 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    [Tooltip("Arrastra los prefabs de los tanques aquí")]
+    // Callback for minigame victory/end
+    public Action OnGameEndedCallback;
+    [Tooltip("Arrastra los prefabs de los tanques aquï¿½")]
     public GameObject[] tankPrefabs;
     public FuelGun fuelGun; // Referencia al script de la pistola
 
-    [Tooltip("El objeto padre donde se instanciará el tanque. Arrastra el objeto de la escena aquí.")]
-    public Transform spawnParent; // ¡Nuevo campo para el objeto padre!
+    [Tooltip("El objeto padre donde se instanciarï¿½ el tanque. Arrastra el objeto de la escena aquï¿½.")]
+    public Transform spawnParent; // ï¿½Nuevo campo para el objeto padre!
 
     void Start()
     {
         StartNewGame();
     }
 
-    // Este método es llamado por el TankController cuando el juego termina
+    // Este mï¿½todo es llamado por el TankController cuando el juego termina
     public void OnGameEnded()
     {
-        StartCoroutine(RestartGameAfterDelay(3f));
+        // Call the callback if set (for minigame manager)
+        if (OnGameEndedCallback != null)
+        {
+			Debug.Log("Game ended, invoking callback.");
+            var cb = OnGameEndedCallback;
+            OnGameEndedCallback = null; // Clear before invoke to avoid reentrancy
+            cb.Invoke();
+            // Do NOT restart the game if callback was set (minigame context)
+            return;
+        }
     }
 
     private IEnumerator RestartGameAfterDelay(float delay)
@@ -40,7 +52,7 @@ public class GameManager : MonoBehaviour
 
         if (tankPrefabs.Length > 0 && spawnParent != null)
         {
-            int randomTankIndex = Random.Range(0, tankPrefabs.Length);
+            int randomTankIndex = UnityEngine.Random.Range(0, tankPrefabs.Length);
 
             // Instanciar el nuevo tanque como hijo del objeto padre
             GameObject newTankObject = Instantiate(tankPrefabs[randomTankIndex], spawnParent);
@@ -57,12 +69,12 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("TankController o FuelGun no encontrados. Asegúrate de que los scripts están adjuntos y las referencias configuradas.");
+                Debug.LogError("TankController o FuelGun no encontrados. Asegï¿½rate de que los scripts estï¿½n adjuntos y las referencias configuradas.");
             }
         }
         else
         {
-            Debug.LogError("No hay prefabs de tanques asignados o el objeto 'spawnParent' no está configurado en el GameManager.");
+            Debug.LogError("No hay prefabs de tanques asignados o el objeto 'spawnParent' no estï¿½ configurado en el GameManager.");
         }
     }
 }

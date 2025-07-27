@@ -98,10 +98,22 @@ public class CameraManager : MonoBehaviour
     }
     public void ShowObject(string name)
     {
+        ShowObject(name, null);
+    }
+
+    public void ShowObject(string name, GameObject objToToggle)
+    {
         Debug.Log($"Toggling object: {name}");
+        bool toggled = false;
+        if (objToToggle != null)
+        {
+            bool isActive = objToToggle.activeSelf;
+            objToToggle.SetActive(!isActive);
+            toggled = true;
+        }
         foreach (var namedObj in objects)
         {
-            if (namedObj.objectName == name && namedObj.obj != null)
+            if (!toggled && namedObj.objectName == name && namedObj.obj != null)
             {
                 bool isActive = namedObj.obj.activeSelf;
                 namedObj.obj.SetActive(!isActive);
