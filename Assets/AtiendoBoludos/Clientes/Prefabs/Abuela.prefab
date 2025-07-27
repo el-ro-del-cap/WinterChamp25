@@ -59,7 +59,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerName: abuela
-  dialogos: []
+  dialogos:
+  - lineasEntrada: []
+    lineaFinal: 
 --- !u!1 &3154348508493540263
 GameObject:
   m_ObjectHideFlags: 0

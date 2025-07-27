@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CustomerController : MonoBehaviour {
@@ -49,7 +50,7 @@ public class CustomerController : MonoBehaviour {
         waitingCustomers.RemoveAt(waitListIndex);
 
         //Instanciar cliente
-
+        StopTheMoveCR();
         currentCustomer = GameObject.Instantiate(customerData[customerIndex].prefab, customerParent);
         currentCustomer.transform.position = customerStartPosition.position;
         currentCustomerIndex = customerIndex;
@@ -60,8 +61,12 @@ public class CustomerController : MonoBehaviour {
 
     public void CustomerGreet() {
         int customerDialogueToPlay = customerData[currentCustomerIndex].lastDialoguePart + 1;
-        customerData[currentCustomerIndex].lastDialoguePart = customerDialogueToPlay;
-        DoDialogueCR(currentCustomer.dialogos[customerDialogueToPlay].lineasEntrada);
+        if (customerDialogueToPlay >= currentCustomer.dialogos.Length) {
+            //No hay dialogo
+        } else {
+            customerData[currentCustomerIndex].lastDialoguePart = customerDialogueToPlay;
+            DoDialogueCR(currentCustomer.dialogos[customerDialogueToPlay].lineasEntrada);
+        }
 
     }
 
@@ -82,12 +87,22 @@ public class CustomerController : MonoBehaviour {
     }
 
     private void DisplayText(string textToDisplay) {
+        Debug.Log("Muestra dialogo");
         //Code for displaying text here
     }
 
     public void MoveCustomer(Vector3 targetPosition, float duration, EmptyDelegate callback) {
-        StartCoroutine(MoveCustomerCR(targetPosition, duration, callback));
+        StopTheMoveCR();
+        moveCoroutine = StartCoroutine(MoveCustomerCR(targetPosition, duration, callback));
     }
+
+    private void StopTheMoveCR() {
+        if (moveCoroutine != null) {
+            StopCoroutine(moveCoroutine);
+        }
+    }
+
+    private Coroutine moveCoroutine;
 
     private IEnumerator MoveCustomerCR(Vector3 targetPosition, float duration, EmptyDelegate callback) {
         Vector3 startPosition = currentCustomer.transform.position;
@@ -95,6 +110,9 @@ public class CustomerController : MonoBehaviour {
         float endTime = startTime + duration;
         while (Time.time < endTime) {
             float lerpPoint = EasingsScript.EaseInOutBack(Mathf.InverseLerp(startTime, endTime, Time.time));
+            if (currentCustomer == null) {
+                yield break;
+            }
             currentCustomer.transform.position = Vector3.LerpUnclamped(startPosition, targetPosition, lerpPoint);
             yield return null;
         }
