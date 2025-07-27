@@ -10146,9 +10146,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuelMinigamePrefab: {fileID: 0}
   moneyManager: {fileID: 1912290764}
-  stratagemMinorWinReward: 200
-  toiletWinReward: 1000
-  fuelWinReward: 500
+  stratagemMinorWinReward: 50
+  toiletWinReward: 200
+  fuelWinReward: 200
 --- !u!4 &1574597850
 Transform:
   m_ObjectHideFlags: 0
@@ -14167,6 +14167,7 @@ MonoBehaviour:
   lightExpenses: 2000
   gameTime: {fileID: 774657938}
   coinPopupPrefab: {fileID: 7430643768633882510, guid: 7f39856c31e5d824eab9eda4a049e6aa, type: 3}
+  lossPopupPrefab: {fileID: 0}
   coinPopupLayoutParent: {fileID: 501303394}
   coinPopupMaxCount: 7
   coinPopupDuration: 3
