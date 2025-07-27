@@ -70,6 +70,8 @@ public class CustomerController : MonoBehaviour {
     {
         yield return new WaitForSeconds(delay);
         SendNextCustomer();
+        // Wait 2 seconds for arrival animation before dialog
+        yield return new WaitForSeconds(2f);
         AssignDialogAndTaskToCurrentCustomer();
     }
 
