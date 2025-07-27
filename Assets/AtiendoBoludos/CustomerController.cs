@@ -65,7 +65,7 @@ public class CustomerController : MonoBehaviour {
             //No hay dialogo
         } else {
             customerData[currentCustomerIndex].lastDialoguePart = customerDialogueToPlay;
-            DoDialogueCR(currentCustomer.dialogos[customerDialogueToPlay].lineasEntrada);
+            StartCoroutine(DoDialogueCR(currentCustomer.dialogos[customerDialogueToPlay].lineasEntrada));
         }
 
     }
@@ -89,6 +89,28 @@ public class CustomerController : MonoBehaviour {
     private void DisplayText(string textToDisplay) {
         Debug.Log("Muestra dialogo");
         //Code for displaying text here
+    }
+
+    public void DoLastCustomerLines() {
+        if (currentCustomer != null) {
+            StartCoroutine(DoFinalDialogueCR(currentCustomer.dialogos[customerData[currentCustomerIndex].lastDialoguePart].lineasFinales));
+        }
+    }
+
+    private IEnumerator DoFinalDialogueCR(string[] dialogues) {
+        int i = 0;
+        bool displayingText = false;
+        while (i < dialogues.Length) {
+            if (!displayingText) {
+                DisplayText(dialogues[i]);
+            }
+            if (Input.anyKeyDown) {
+                displayingText = false;
+                i++;
+            }
+            yield return null;
+        }
+        //Mandar proximo cliente
     }
 
     public void MoveCustomer(Vector3 targetPosition, float duration, EmptyDelegate callback) {

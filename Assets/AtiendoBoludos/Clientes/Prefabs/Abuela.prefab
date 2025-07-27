@@ -60,8 +60,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerName: abuela
   dialogos:
-  - lineasEntrada: []
-    lineaFinal: 
+  - lineasEntrada:
+    - Buenas tardes mijito
+    - 'Buenas tardes como la puedo ayudar '
+    - Por favor dame un alfajor para mi nieto y un fajo de puchitos mijito
+    - A la orden
+    lineasFinales:
+    - Tenga
+    - "A veces hay que consentir a los ni\xF1os... aunque tengan 30 y barba"
+  - lineasEntrada:
+    - Buenas tardes mijo
+    - "Buenas tardes, se\xF1ora"
+    - "te pareces tanto a mi nieto... aunque el m\xEDo se peina para atr\xE1s y se
+      cree actor de pel\xEDculas... Dame un refresco chicho y una caja de panuelos"
+    - Enseguida
+    lineasFinales:
+    - "Esas cosas le encantan\u2026 y siempre termina usando los pa\xF1uelitos para
+      limpiar el espejo de la moto."
+  - lineasEntrada:
+    - "Los j\xF3venes de hoy en d\xEDa creen que lo saben todo..."
+    - Hacemos lo que podemos
+    - "Espero que mi peque\xF1o est\xE9 bien. Dame un cereal de chocolate, por favor.
+      Son sus favoritos."
+    - Enseguida
+    lineasFinales:
+    - "Si ves a mi nieto, decile que coma algo verde tambi\xE9n... y que me llame.
+      Adi\xF3s, mijito."
+  - lineasEntrada:
+    - "Mijito, \xBFme das unas galletitas surtidas, por favor?"
+    - "Claro, se\xF1ora. \xBFPara usted o para su nieto?"
+    - Para mi nieto... pero si se atrasa, capaz me las como yo.
+    - Enseguida
+    lineasFinales:
+    - "\xC9l siempre dice que las galletas le dan \"combustible emocional\". \xA1Ay,
+      juventud!"
 --- !u!1 &3154348508493540263
 GameObject:
   m_ObjectHideFlags: 0
