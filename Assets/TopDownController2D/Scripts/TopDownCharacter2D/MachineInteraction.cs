@@ -79,6 +79,14 @@ public class InteractionAreaManager : MonoBehaviour, IInteractable
         {
             spawnedArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity, transform);
             spawnedArrow.transform.localPosition = new Vector3(arrowOffsetY, 0 , 0); // Corrected Y-offset
+            // Compensate for parent scale so world scale matches prefab
+            Vector3 prefabWorldScale = arrowPrefab.transform.lossyScale;
+            Vector3 parentLossy = spawnedArrow.transform.parent.lossyScale;
+            spawnedArrow.transform.localScale = new Vector3(
+                prefabWorldScale.x / parentLossy.x,
+                prefabWorldScale.y / parentLossy.y,
+                prefabWorldScale.z / parentLossy.z
+            );
             spawnedArrow.SetActive(false); 
         }
         else
