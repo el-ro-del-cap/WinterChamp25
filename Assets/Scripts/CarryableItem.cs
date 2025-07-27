@@ -12,6 +12,9 @@ public class CarryableItem : MonoBehaviour, IInteractable
     private GameObject arrowPrefab;
     public float arrowOffsetY = 1.0f;
 
+    [Header("Item ID (unique for each item type)")]
+    public string itemID;
+
     private PlayerInteractionInput playerInteractionInput;
     private TopDownCharacter2D.Controllers.TopDownInputController playerInputController;
     private bool playerInDetectionRange = false;

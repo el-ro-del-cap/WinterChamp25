@@ -10,6 +10,9 @@ public class CarryStackManager : MonoBehaviour
     private List<GameObject> carriedItems = new List<GameObject>();
     private Transform playerTransform;
 
+    [Header("UI Reference")]
+    public DialogBox dialogBox;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -30,6 +33,13 @@ public class CarryStackManager : MonoBehaviour
         carriedItems.Add(item);
         item.transform.SetParent(playerTransform);
         UpdateStackPositions();
+
+        // Mark as collected in dialog if item is part of the current task
+        var carryable = item.GetComponent<CarryableItem>();
+        if (carryable != null && dialogBox != null)
+        {
+            dialogBox.MarkItemCollected(carryable.itemID);
+        }
     }
 
     private void UpdateStackPositions()
