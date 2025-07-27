@@ -4727,10 +4727,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 1300253491}
-  dayDurationSeconds: 120
+  dayDurationSeconds: 60
   startDay: 1
   currentDay: 0
-  moneyManager: {fileID: 0}
+  moneyManager: {fileID: 1912290764}
 --- !u!4 &774657939
 Transform:
   m_ObjectHideFlags: 0
@@ -14304,7 +14304,7 @@ MonoBehaviour:
   creditsText: {fileID: 836159925}
   credits: 0
   maxCredits: 100000
-  lightExpenses: 2000
+  lightExpenses: 300
   gameTime: {fileID: 774657938}
   coinPopupPrefab: {fileID: 7430643768633882510, guid: 7f39856c31e5d824eab9eda4a049e6aa, type: 3}
   lossPopupPrefab: {fileID: 7430643768633882510, guid: 0b7771f25ddc3e445a744a7167645c0f, type: 3}
