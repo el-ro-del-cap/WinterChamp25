@@ -8,6 +8,21 @@ public class CarryStackManager : MonoBehaviour
     [Tooltip("The Y position (local) where the first item in the stack will be placed above the player.")]
     public float stackStartY = 0.0f;
     private List<GameObject> carriedItems = new List<GameObject>();
+    // Expose carried items for task completion
+    public List<GameObject> GetCarriedItems()
+    {
+        return new List<GameObject>(carriedItems);
+    }
+
+    // Remove item from stack
+    public void RemoveFromStack(GameObject item)
+    {
+        if (carriedItems.Contains(item))
+        {
+            carriedItems.Remove(item);
+            UpdateStackPositions();
+        }
+    }
     private Transform playerTransform;
 
     [Header("UI Reference")]

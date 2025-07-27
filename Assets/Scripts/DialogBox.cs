@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,6 +9,8 @@ public class ItemSpriteMapping
 {
     public string itemID;
     public Sprite sprite;
+
+
 }
 
 public class DialogBox : MonoBehaviour
@@ -32,7 +33,12 @@ public class DialogBox : MonoBehaviour
     private Dictionary<string, GameObject> currentTaskIcons = new Dictionary<string, GameObject>();
     private Task currentTask;
 
-    void Awake()
+    // Returns the current task (for TaskCompletionManager)
+    public Task GetCurrentTask()
+    {
+        return currentTask;
+    }
+	void Awake()
     {
         // Build the dictionary for fast lookup
         spriteDict = new Dictionary<string, Sprite>();
