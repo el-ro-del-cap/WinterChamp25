@@ -15,7 +15,7 @@ public class GameTime : MonoBehaviour
     public int startHour = 9;
     public int startMinute = 0;
 
-    private int currentDay;
+    public int currentDay;
     private int currentHour;
     private int currentMinute;
     private float minuteTimer;

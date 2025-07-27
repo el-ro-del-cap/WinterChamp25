@@ -9,11 +9,19 @@ namespace TopDownCharacter2D.Items
     public class PickupMoney : PickupItem
     {
         [Tooltip("The amount of money given when picked up")]
-        [SerializeField] private float moneyAmount;
+        [SerializeField] private int moneyAmount;
+        private GameObject UIManager;
+        private MoneyManager moneyManager;
+
+        void Start()
+        {
+            UIManager = GameObject.Find("UI");
+            moneyManager = UIManager.GetComponent<MoneyManager>();
+        }
 
         protected override void OnPickedUp(GameObject receiver)
         {
-            //Pa subir la plata
+            moneyManager.SumarCreditos(moneyAmount);
         }
     }
 }
