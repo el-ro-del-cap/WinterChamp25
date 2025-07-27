@@ -92,6 +92,20 @@ public class CarryableItem : MonoBehaviour, IInteractable
         carriedBy = playerInputController.transform;
         HideArrow();
         CarryStackManager.Instance.AddToStack(this.gameObject);
+        // Reset after short delay so it can be picked up again
+        StartCoroutine(ResetPickupStateAfterDelay(0.1f));
+    }
+
+    private System.Collections.IEnumerator ResetPickupStateAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        carriedBy = null;
+        // Re-enable arrow and interaction if player is in range
+        float distanceToPlayer = Vector2.Distance(transform.position, playerInputController.transform.position);
+        if (distanceToPlayer <= interactionRange)
+        {
+            playerInDetectionRange = false; // Force re-check
+        }
     }
 
     private void ShowArrow()
