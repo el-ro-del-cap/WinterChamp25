@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -15,7 +17,14 @@ public class MoneyManager : MonoBehaviour
     public GameTime gameTime;
 
     private int lastDeductedDay = 0;
+	
+    [Header("Coin Popup UI")]
+    public GameObject coinPopupPrefab;
+    public Transform coinPopupLayoutParent;
+    public int coinPopupMaxCount = 7;
+    public float coinPopupDuration = 3f;
 
+    private List<GameObject> activeCoinPopups = new List<GameObject>();
     void Start()
     {
         // Asegurarse de que el texto se muestre correctamente al inicio
@@ -24,7 +33,7 @@ public class MoneyManager : MonoBehaviour
 
     void Update()
     {
-        // Verificar si han pasado 5 días y no hemos deducido los gastos todavía en este día
+        // Verificar si han pasado 5 dï¿½as y no hemos deducido los gastos todavï¿½a en este dï¿½a
         if (gameTime != null && gameTime.currentDay % 5 == 0 && gameTime.currentDay != lastDeductedDay)
         {
             DeductExpenses();
@@ -35,13 +44,13 @@ public class MoneyManager : MonoBehaviour
     {
         credits += amount;
 
-        // Limitar los créditos al máximo
+        // Limitar los crï¿½ditos al mï¿½ximo
         if (credits > maxCredits)
         {
             credits = maxCredits;
         }
 
-        // Comprobar si se alcanzó el límite de 10000 y avisar
+        // Comprobar si se alcanzï¿½ el lï¿½mite de 10000 y avisar
         if (credits == maxCredits)
         {
             Debug.Log("Bien ahi toda esa guitaaa");
@@ -49,26 +58,58 @@ public class MoneyManager : MonoBehaviour
 
         print(credits);
         UpdateCreditsText();
+
+        // Show popup if credits were added
+        if (amount > 0)
+        {
+            SpawnCoinPopup(amount);
+        }
+    }
+
+    private void SpawnCoinPopup(int amount)
+    {
+        if (coinPopupPrefab == null || coinPopupLayoutParent == null) return;
+        GameObject popup = GameObject.Instantiate(coinPopupPrefab, coinPopupLayoutParent);
+        var text = popup.GetComponentInChildren<TMPro.TMP_Text>();
+        if (text != null)
+            text.text = $"+{amount}";
+        activeCoinPopups.Add(popup);
+        if (activeCoinPopups.Count > coinPopupMaxCount)
+        {
+            GameObject.Destroy(activeCoinPopups[0]);
+            activeCoinPopups.RemoveAt(0);
+        }
+        StartCoroutine(RemoveCoinPopupAfterDelay(popup, coinPopupDuration));
+    }
+
+    private IEnumerator RemoveCoinPopupAfterDelay(GameObject popup, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (activeCoinPopups.Contains(popup))
+        {
+            activeCoinPopups.Remove(popup);
+            GameObject.Destroy(popup);
+        }
     }
 
     private void DeductExpenses()
     {
         credits -= lightExpenses;
 
-        // Evitar que los créditos bajen de 0
+        // Evitar que los crï¿½ditos bajen de 0
         if (credits < 0)
         {
             credits = 0;
         }
 
         Debug.Log("Gastos de luz!");
-        lastDeductedDay = gameTime.currentDay; // Actualizar el día de la última deducción
+        lastDeductedDay = gameTime.currentDay; // Actualizar el dï¿½a de la ï¿½ltima deducciï¿½n
 
         UpdateCreditsText();
     }
 
     private void UpdateCreditsText()
     {
-        creditsText.text = $"Créditos: {credits}/{maxCredits}";
+        creditsText.text = $"{credits}/{maxCredits}";
     }
 }
