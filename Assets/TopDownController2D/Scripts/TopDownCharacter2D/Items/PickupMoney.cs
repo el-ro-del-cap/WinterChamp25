@@ -15,8 +15,7 @@ namespace TopDownCharacter2D.Items
 
         void Start()
         {
-            UIManager = GameObject.Find("UI");
-            moneyManager = UIManager.GetComponent<MoneyManager>();
+            moneyManager = GameObject.Find("MoneyManager").GetComponent<MoneyManager>();
         }
 
         protected override void OnPickedUp(GameObject receiver)
