@@ -35,6 +35,11 @@ public class CustomerController : MonoBehaviour {
                     currentSuccessLines = dialog.successLines;
                     currentSuccessIndex = 0;
                     successDialogActive = true;
+                    // Ensure dialog box is visible
+                    if (dialogBox.dialogPopupGroup != null)
+                        dialogBox.dialogPopupGroup.SetActive(true);
+                    else
+                        dialogBox.gameObject.SetActive(true);
                     ShowCurrentSuccessLine();
                     return;
                 }

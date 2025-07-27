@@ -42,7 +42,7 @@ public class TaskCompletionManager : MonoBehaviour
             if (carryable != null && required.Contains(carryable.itemID))
             {
                 delivered++;
-                required.Remove(carryable.itemID); // Only count each required once
+                // Do NOT remove itemID from required, allow multiple of the same item
                 toRemove.Add(item);
             }
             else if (carryable != null)

@@ -45,8 +45,10 @@ public class CarryStackManager : MonoBehaviour
 
     public void AddToStack(GameObject item)
     {
-        carriedItems.Add(item);
-        item.transform.SetParent(playerTransform);
+        // Instead of moving the original, instantiate a copy and stack it
+        GameObject itemCopy = Instantiate(item);
+        itemCopy.transform.SetParent(playerTransform);
+        carriedItems.Add(itemCopy);
         UpdateStackPositions();
 
         // Mark as collected in dialog if item is part of the current task

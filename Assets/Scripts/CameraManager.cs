@@ -105,6 +105,15 @@ public class CameraManager : MonoBehaviour
             {
                 bool isActive = namedObj.obj.activeSelf;
                 namedObj.obj.SetActive(!isActive);
+                // If toggling ON AtendioBoludos, respawn coins
+                if (!isActive && name == "AtiendoBoludos")
+                {
+                    var spawners = GameObject.FindObjectsOfType<RandomTileSpawner>();
+                    foreach (var spawner in spawners)
+                    {
+                        spawner.SpawnPrefabs();
+                    }
+                }
             }
             else if (namedObj.obj != null)
             {
